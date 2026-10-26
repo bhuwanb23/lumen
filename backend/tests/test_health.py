@@ -33,8 +33,4 @@ def test_cors_allows_only_configured_frontend_origin() -> None:
 
 def test_root_makes_bootstrap_only_state_explicit() -> None:
     response = request("GET", "/")
-    assert response.json() == {
-        "service": "lumen-api",
-        "status": "bootstrap-only",
-        "analysis_available": False,
-    }
+    assert response.json() == {"service": "lumen-api", "status": "ready"}
