@@ -1,3 +1,4 @@
+import AxeBuilder from "@axe-core/playwright";
 import { expect, test, type Page } from "@playwright/test";
 
 import {
@@ -187,6 +188,41 @@ test("real same-origin proxy reaches FastAPI while models remain disabled", asyn
   expect(requests.some((url) => /anthropic|openrouter|ollama/i.test(url))).toBe(false);
 });
 
+test("proxy and health routes enforce bounds, no-store, and security headers", async ({ request }) => {
+  const health = await request.get("http://localhost:3001/api/health");
+  expect(health.status()).toBe(200);
+  expect(health.headers()["cache-control"]).toContain("no-store");
+
+  const wrongType = await request.post("http://localhost:3001/api/analyze", {
+    data: "{}",
+    headers: { "Content-Type": "text/plain" },
+  });
+  expect(wrongType.status()).toBe(415);
+  const headers = wrongType.headers();
+  expect(headers["cache-control"]).toContain("no-store");
+  expect(headers["x-content-type-options"]).toBe("nosniff");
+  expect(headers["x-frame-options"]).toBe("DENY");
+  expect(headers["referrer-policy"]).toBe("no-referrer");
+  expect(headers["permissions-policy"]).toBe("camera=(), microphone=(), geolocation=()");
+  expect(headers["x-powered-by"]).toBeUndefined();
+
+  const malformed = await request.post("http://localhost:3001/api/analyze", {
+    data: Buffer.from("{not json"),
+    headers: { "Content-Type": "application/json" },
+  });
+  expect(malformed.status()).toBe(400);
+  expect(malformed.headers()["cache-control"]).toContain("no-store");
+  expect(await malformed.text()).not.toContain("not json");
+
+  const oversized = await request.post("http://localhost:3001/api/analyze", {
+    data: JSON.stringify({ report_text: "x".repeat(1_000_100) }),
+    headers: { "Content-Type": "application/json" },
+  });
+  expect(oversized.status()).toBe(413);
+  expect(oversized.headers()["cache-control"]).toContain("no-store");
+  expect(await oversized.text()).not.toContain("x".repeat(100));
+});
+
 test("service outage clears claims and offers a generic actionable error", async ({ page }) => {
   await stubHealth(page);
   await page.route("**/api/analyze", (route) =>
@@ -202,6 +238,33 @@ test("service outage clears claims and offers a generic actionable error", async
   await expect(page.locator('p[role="alert"]')).toContainText("No generated claims were returned.");
   await expect(page.getByRole("heading", { name: "Result" })).toHaveCount(0);
   await expect(page.getByRole("button", { name: /View source/ })).toHaveCount(0);
+});
+
+test("axe WCAG 2.1 A/AA scan passes on form and rendered results", async ({ page }) => {
+  await stubHealth(page);
+  installAnalysisResponse(page, HAPPY_RESULT);
+  const documentResponse = await page.goto("/");
+  const headers = documentResponse?.headers() ?? {};
+  expect(headers["x-content-type-options"]).toBe("nosniff");
+  expect(headers["x-frame-options"]).toBe("DENY");
+  expect(headers["referrer-policy"]).toBe("no-referrer");
+  expect(headers["permissions-policy"]).toBe("camera=(), microphone=(), geolocation=()");
+  expect(headers["x-powered-by"]).toBeUndefined();
+
+  const scan = () => new AxeBuilder({ page })
+    .withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa"])
+    .analyze();
+  const formResults = await scan();
+  expect(formResults.violations).toEqual([]);
+
+  await page.getByRole("textbox", { name: "Report excerpt" }).fill(SYNTHETIC_REPORT);
+  await page.getByRole("checkbox").nth(0).check();
+  await page.getByRole("checkbox").nth(1).check();
+  await page.getByRole("button", { name: "Explain excerpt" }).click();
+  await expect(page.getByRole("heading", { name: "Result" })).toBeVisible();
+
+  const resultResults = await scan();
+  expect(resultResults.violations).toEqual([]);
 });
 
 test("mobile layout stays within viewport and keyboard reaches form and source controls", async ({ page }) => {
@@ -229,5 +292,7 @@ test("mobile layout stays within viewport and keyboard reaches form and source c
   await sourceButton.focus();
   await page.keyboard.press("Enter");
   await expect(page.locator(`#${sourcePanelId}`)).toContainText("Adenocarcinoma, acinar pattern");
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+  await page.setViewportSize({ width: 320, height: 800 });
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
 });

@@ -220,6 +220,81 @@ async def test_transient_provider_timeout_retries_only_within_configured_bound()
     assert "private transport failure" not in str(error.value)
 
 
+@pytest.mark.parametrize("transient_status", [429, 503])
+@pytest.mark.asyncio
+async def test_rate_limit_and_server_errors_retry_only_within_configured_bound(
+    transient_status: int,
+) -> None:
+    calls = 0
+
+    async def handler(_: httpx.Request) -> httpx.Response:
+        nonlocal calls
+        calls += 1
+        if calls == 1:
+            return httpx.Response(transient_status, json={"error": "DO_NOT_LEAK_PROVIDER_BODY"})
+        return httpx.Response(
+            200,
+            json={
+                "content": [
+                    {
+                        "type": "tool_use",
+                        "name": "fact_verification",
+                        "input": {"supported_fact_ids": []},
+                    }
+                ]
+            },
+        )
+
+    async with httpx.AsyncClient(transport=httpx.MockTransport(handler)) as client:
+        provider = AnthropicProvider(
+            client=client,
+            api_key="server-secret",
+            model="verifier-model",
+            base_url="https://anthropic.invalid",
+            max_retries=1,
+        )
+        provider.retry_base_delay = 0
+        result = await provider.complete(
+            system_prompt="Verify only.",
+            user_payload={"report_text": "synthetic excerpt"},
+            output_model=FactVerificationResult,
+            tool_name="fact_verification",
+        )
+
+    assert calls == 2
+    assert result.supported_fact_ids == []
+
+
+@pytest.mark.asyncio
+async def test_invalid_provider_key_response_is_generic_and_not_retried() -> None:
+    calls = 0
+
+    async def handler(_: httpx.Request) -> httpx.Response:
+        nonlocal calls
+        calls += 1
+        return httpx.Response(401, json={"error": "DO_NOT_LEAK_BAD_KEY_OR_REPORT_CONTENT"})
+
+    async with httpx.AsyncClient(transport=httpx.MockTransport(handler)) as client:
+        provider = AnthropicProvider(
+            client=client,
+            api_key="server-secret",
+            model="generator-model",
+            base_url="https://anthropic.invalid",
+            max_retries=2,
+        )
+        provider.retry_base_delay = 0
+        with pytest.raises(ProviderError) as error:
+            await provider.complete(
+                system_prompt="Explain only supported facts.",
+                user_payload={"report_text": "synthetic excerpt"},
+                output_model=FactVerificationResult,
+                tool_name="fact_verification",
+            )
+
+    assert calls == 1
+    assert "DO_NOT_LEAK" not in str(error.value)
+
+
 @pytest.mark.asyncio
 async def test_malformed_provider_schema_fails_closed_without_raw_output() -> None:
     async def handler(_: httpx.Request) -> httpx.Response:

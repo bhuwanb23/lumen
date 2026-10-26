@@ -22,8 +22,10 @@ Tests cover:
 - Fixed refusal display with no report facts or claims.
 - Service-outage state with no stale result.
 - Real same-origin browser → Next.js → disabled FastAPI path.
-- Mobile viewport overflow, skip link, keyboard focus, and source-panel keyboard operation.
+- Mobile viewport overflow at 390 px and 320 px, skip link, keyboard focus, and source-panel keyboard operation.
+- Automated axe WCAG 2.1 A/AA scan on form and rendered-result states (zero violations in the tested desktop viewport; not certification and not a screen-reader substitute).
 - Same-origin browser requests, no provider host request, no provider credential names in loaded scripts, and no local/session storage or query-string payload.
+- Proxy rejection of wrong content type, malformed JSON, and >1 MB bodies; `no-store` and security-header checks.
 
 The backend's separate unit/API/provider mock tests exercise extraction, evidence rejection, verifier failure, and server-side redaction. A live positive-model flow is not available until an operator deliberately configures and reviews a provider; no keys or live calls are used by this demo suite.
 
