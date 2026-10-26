@@ -1,22 +1,14 @@
 # 08 — Integrations and document handling
 
-## Model providers: Anthropic direct, OpenRouter, optional Ollama
-The user requests support for all three behind one server-side adapter boundary. Phase 0 only adds configuration placeholders; **no provider adapter, report analysis, or model call exists yet**. Keep `MODEL_PROVIDER=disabled` by default. In a later phase, implement/test each adapter separately: Anthropic's native API; OpenRouter's configured compatible endpoint/model; Ollama at a local base URL/model. Verify current model availability, structured-output/tool support, context/image limits, latency/cost, retention/training terms, and failure behavior for each selected model. Do not silently fail over between providers; that can change where report content is sent. Any hosted option sends report content outside the app when enabled; disclose explicitly. Ollama is local only if the user's deployment/network is actually local and correctly secured. Keep keys server-side; CI uses mocks; never log prompt/output.
+## Model-provider boundary (Phase 2)
+The backend now has server-side structured-output adapters for Anthropic direct, OpenRouter, and Ollama. The provider is explicitly selected with `MODEL_PROVIDER`; it defaults to `disabled` and never silently switches data recipients. Anthropic and OpenRouter keys remain server-side. Every enabled configuration requires distinct generator and verifier model IDs; extraction/explanation use the generator, while fact and claim verification use the verifier model. CI uses mock HTTP transports and synthetic data only.
 
-## Presidio
-Goal: detect/mask names, addresses, IDs, dates, facility/clinician names before provider calls. Before integration, test custom recognizers, English/mixed/Tamil/Hindi coverage, false negatives and false positives, and reversible source-span mapping. Masking must not break citations or leak originals in output. Best effort, never a guarantee. If mapping isn't solved, keep it off and disclose provider transmission.
+Adapters have not been exercised against live services. Verify current model availability, tool/schema support, context limits, latency/cost, retention/training terms, and failure behavior before enabling a deployment. Ollama is not considered local merely because the product is named Ollama: endpoint reachability, network controls, and host trust must be checked. Users are explicitly told the operator-configured model service processes submitted text and may be external. No provider payloads, outputs, keys, or error bodies are logged.
 
-## NCI Dictionary / Thesaurus
-Only exact lookup with source attribution/retrieval date; never fill missing lookup from model memory. Before coding, confirm current access route, licensing/attribution, caching permission, versioning, locale coverage, rate limits, and stability. SQLite FTS5 cache may contain only approved public terms, no patient query history. If terms remain unclear, defer.
+## Document handling currently supported
+The prototype accepts pasted text only, bounded to 50,000 characters (and further configurable downward). The server preserves that string as supplied and computes zero-based Python Unicode-codepoint offsets with end-exclusive spans; it performs no normalization. Model-proposed offsets are not accepted. Each evidence quote is checked for exact occurrence before downstream use, and instruction-like lines are excluded by a deterministic backstop. The semantic verifier remains necessary because substring equality alone does not prove a claim.
 
-## ClinicalTrials.gov API v2
-Query with minimum necessary explicit extracted criteria; cache public metadata with TTL and timestamp. Show registry link, NCT ID, recruiting status as retrieved, and search basis. Label “study to ask your oncologist about”; no suitability ranking, eligibility decision, or promise of completeness/currentness. Verify query syntax, status filters, rate limits and cache rules with current API docs.
+The browser has no upload, OCR, PDF/image parsing, account, analytics, or report-storage path. Requests and responses are no-store. The API requires a synthetic/de-identified acknowledgement and a provider-processing acknowledgement; those controls do not constitute a de-identification service. Use synthetic or properly de-identified text only and never submit direct identifiers or real patient data to this prototype.
 
-## PDF/photo OCR
-P0 is text-first. P1 upload requires strict MIME/extension, bytes/page count/image dimensions, safe temporary handling/cleanup, OCR preview/edit, poor-quality/empty/encrypted/corrupt paths, prompt-injection tests, and honest source anchors. Quote from patient-reviewed transcription; don't claim exact scan line provenance absent verified coordinates. If mapping/confidence fails, stop and offer paste.
-
-## WeasyPrint prep card
-Only after stable response contract. One page; accessible structure; source quotes; questions; locale; disclaimer; no patient name by default. Check sanitized HTML, font embedding/licensing, line wrapping, grayscale print, Tamil/Hindi glyph shaping. Browser print is fallback. No identifiers added by default.
-
-## SQLite cache policy
-Allowed only for public, approved glossary/trial metadata with TTL, provenance, version and size bounds. Never store reports, IDs, prompts, answers, patient-specific queries/history. Define invalidation before deployment.
+## Deferred integrations
+No OCR/document upload, translation, glossary/NCI service, clinical trial search, PII detection, or PDF visit-preparation card is implemented. Those remain later-phase work and require separate privacy, safety, accessibility, licensing, and evaluation gates. Any future clinicalTrials.gov content can only be a clinician discussion starter—not an eligibility recommendation.

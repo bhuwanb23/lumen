@@ -1,37 +1,46 @@
-# 03 — Proposed architecture
+# 03 — Architecture and current boundaries
 
-## Data flow
+## Current Phase 2 data flow
 ```text
-Browser → Next.js UI and same-origin route → FastAPI validation/orchestrator
-  → optional Presidio adapter → configured model adapter (Anthropic/OpenRouter/Ollama) → fact-only explanation
-  → deterministic quote/span check → separate semantic verifier → scope filter
-  → response with supported claims and citations
-Optional after gate: NCI exact lookup, ClinicalTrials.gov, WeasyPrint prep card.
+Browser form
+  → same-origin Next.js /api/analyze proxy
+  → FastAPI /analyze request/acknowledgement/scope checks
+  → explicitly configured generator model: strict extraction
+  → deterministic exact-quote and source-offset validation
+  → separately configured verifier model: fact whitelist
+  → generator model: concise cited claims
+  → verifier model: whole-claim support whitelist
+  → deterministic quote/scope/question checks
+  → response with supported claims, exact sources, fixed disclaimer/refusals
 ```
 
-## Trust boundaries
-- **Browser:** shared-device risk. No localStorage/IndexedDB report storage, analytics replay, URL payload, console logging, or service-worker caching of reports.
-- **Next.js server route:** same-origin proxy; holds no provider credential; enforce body cap, timeout, no-store, generic errors.
-- **FastAPI:** strict schemas/size checks; no report database; metadata-only logs.
-- **Model provider:** an explicitly selected Anthropic, OpenRouter, or Ollama adapter may receive report content only after implemented and deliberately enabled. No automatic provider failover; switching providers can change data recipients. Stateless application does not guarantee provider-side non-retention. Verify and disclose terms per provider. Ollama is only “local” if its network endpoint is actually on a trusted local machine.
-- **Public integrations:** send only minimum extracted criteria, not report text or identifiers. Caches store public glossary/trial data only, never user requests.
+No OCR, PII detection, glossary, trials integration, or PDF card is present. `MODEL_PROVIDER=disabled` is the default. A configured provider requires distinct generator and verifier model IDs; no automatic fallback changes where data is sent.
 
-## Pipeline contract
-1. **Intake:** preserve original text; no destructive Unicode normalization unless reversible offset map exists. P0 only accepts text.
-2. **Extract:** allowlisted fields (report type, cancer type, site, grade, stage, margins, nodes, biomarkers, findings). Each fact has value, status (`stated` / `not_stated` / `unclear`), exact quote, and verified offsets. Absence must never become “negative.”
-3. **Explain:** short claims from validated facts only. Cite stable fact IDs/quotes; no general knowledge to fill gaps.
-4. **Verify:** schema validation; exact substring and offset checks; separate verifier judges whole-claim support. Any failed check or verifier outage suppresses the claim. Verifier is not a proof; benchmark it.
-5. **Safety:** enforce refusals for diagnosis, prognosis/survival, treatment/dose, eligibility, urgent triage; do not rely on prompt alone.
-6. **Respond:** disclaimer, supported claims, citations, neutral questions, locale/readability, omitted count and safe status. No generated fallback claims.
+## Trust boundaries
+- **Browser:** no localStorage/IndexedDB report storage, analytics replay, URL payload, browser console logging, or service-worker caching of reports. The text is held in page memory while used.
+- **Next.js server route:** same-origin proxy; no provider credentials; bounded request size, timeout, no-store responses, and generic error mapping.
+- **FastAPI:** strict request/response schemas, configurable text limit, no report database, and no report-body logs. Validation errors are redacted.
+- **Model provider:** receives report text only after the user acknowledges synthetic/de-identified text and processing by the operator-configured provider. Hosted provider processing can be external. Stateless app processing does not ensure provider-side non-retention. Verify terms and disclose per deployment. Ollama is not assumed local unless its network and host are controlled.
+- **Public integrations:** none currently receive report data. Future services must receive only minimum necessary criteria and must never receive direct identifiers.
+
+## Evidence-locked pipeline
+1. **Intake:** text-only; bounded to 50,000 characters maximum (operator may lower). Preserve the exact source string; no Unicode normalization.
+2. **Extract:** allowlisted fields; every field is marked `stated`, `not_stated`, or `unclear`. The model returns exact quotes only; server assigns deterministic fact IDs and computes zero-based Python Unicode-codepoint, end-exclusive offsets. Invalid/false quotes and instruction-like evidence lines are dropped.
+3. **Fact verify:** distinct configured verifier model whitelists fully supported facts. An unknown ID, malformed result, provider failure, or timeout fails closed.
+4. **Explain:** generator receives only verifier-approved facts and produces candidate claims with stable fact IDs and exact quote proposals. A deterministic check drops missing, mismatched, duplicate, or lexically out-of-scope candidates.
+5. **Claim verify:** distinct verifier model assesses the complete claim against the original report and evidence. Only whitelisted claim IDs enter the public response; a verifier failure returns no claims.
+6. **Safety/response:** deterministic scope refusals for diagnosis, prognosis/survival, treatment/ranking, dosing, trial eligibility, urgent symptoms, and policy evasion. Guess requests for missing values are neutralized; missing fields are explicitly marked. Questions come only from curated neutral English templates. No generated fallback claims.
+
+The semantic verifier is a separate model role and call, not a proof of clinical correctness. Model identities are separately configurable but must be clinically and technically evaluated before real deployment.
 
 ## API boundary
-- `GET /health`: liveness only, no secret/config disclosure.
-- `POST /api/v1/analyze`: strict JSON request (`report_text`, approved locale, reading level); enforce max length.
-- Future `POST /api/v1/analyze-file`: multipart, only after type/page/size/OCR/source-map tests.
-- No request/response body logs, cache, or content-bearing trace. Provider errors are generic and not echoed.
+- `GET /health`: liveness only, no provider/secret detail.
+- `POST /analyze`: FastAPI JSON API; strict English-only schema, report text, optional question, reading level, and two required acknowledgements.
+- Browser calls `POST /api/analyze` on the same origin; Next.js proxies server-to-server.
+- No request/response body logs, caches, or content-bearing traces. Provider errors and validation errors are generic and not echoed.
 
-## Reliability and security
-Bounded timeouts; capped backoff only for transient failures; no retry of malformed deterministic requests; safe unavailable message; CORS allowlist; rate limiting; security headers; body/file limits; HTTPS in deployment; least-privilege containers; secret scanning. JSON logs include fixed event, duration, status class, anonymous request ID only. No report, quote, prompt, completion, filename, identifier, exception text, or key. Langfuse/tracing off until content redaction is proven.
+## Reliability and security posture
+Provider requests use configured timeouts, capped transient retries, and no redirects. Provider selection is explicit; malformed outputs and non-retryable errors do not trigger a fallback. CORS is allowlisted; browser responses are no-store and include baseline security headers. Production deployment still needs HTTPS, rate limiting, abuse controls, secret management, container review, and external provider/privacy review. Do not assume statelessness alone guarantees privacy.
 
-## Evidence offset warning
-Python string indices and JS UTF-16 indices differ for some Unicode. Preserve canonical source and mapping, test Tamil/Devanagari combining marks, line endings and non-BMP characters. Do not highlight offsets until round-trip tests pass; rendering the exact cited quote is safer than slicing with unvalidated cross-language offsets.
+## Offset warning
+Python string indices and JavaScript UTF-16 indices differ for some Unicode. The current UI renders validated exact quotes instead of slicing the source by backend offsets. Extend locale/source highlighting only after codepoint/UTF-16 conversion and Tamil/Devanagari/non-BMP round-trip testing.

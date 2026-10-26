@@ -1,6 +1,6 @@
 # Lumen project documentation
 
-This is the product, technical, safety, evaluation, accessibility, and demo reference. The execution plan is in `../plan/`. Phase 0 application bootstrap has been created; report analysis has not.
+This is the product, technical, safety, evaluation, accessibility, and demo reference. The execution plan is in `../plan/`. Phases 0–2 are implemented; Phase 2 is mock-tested only, not clinically validated, and no live model has been evaluated.
 
 ## Document map
 1. [Product brief](01_product_brief.md)
@@ -14,6 +14,7 @@ This is the product, technical, safety, evaluation, accessibility, and demo refe
 9. [Risks and decisions](09_risks_and_decisions.md)
 10. [Demo and submission](10_demo_and_submission.md)
 11. [Phase 0 decision record](phase_0_decisions.md)
+12. [Phase 2 acceptance/status](../plan/phase_2.md)
 
 ## Product boundary
 Lumen explains only what a submitted report explicitly says, helps prepare neutral questions for the care team, and may surface trials as discussion starters. It does not diagnose, infer missing findings, predict outcomes, recommend/rank treatment or dosage, or decide trial eligibility. It is a hackathon prototype, not a validated medical product.
@@ -27,4 +28,4 @@ Lumen explains only what a submitted report explicitly says, helps prepare neutr
 - Prioritize evidence quality, safety, and evaluation over feature count.
 
 ## Current status
-Phases 0 and 1 are complete in this workspace: the Next.js status shell, same-origin health proxy, FastAPI health endpoint, provider config placeholders, typed Pydantic/JSON contracts, synthetic reports/answer keys, red-team cases, and evaluation annotation/metric definitions are present. Local lint/type/build/API and fixture checks pass. Docker Compose is prepared but not verified because Docker is unavailable in this execution workspace. The app still has no report input or clinical-analysis pipeline. See [Phase 0 decision record](phase_0_decisions.md), [Phase 0 plan/status](../plan/phase_0.md), and [Phase 1 plan/status](../plan/phase_1.md).
+Phases 0–2 are implemented in this workspace. Phase 2 provides an English-only text analysis API, server-side Anthropic/OpenRouter/Ollama adapters, separate generator and verifier model roles, fail-closed evidence checking, fixed refusals, synthetic/de-identification and external-processing acknowledgements, a same-origin Next.js proxy, and a basic results UI. Backend unit/API/provider mocks, lint, type checks, JSON Schema export, and frontend lint/typecheck/build/audit have passed. No live provider call or clinical-quality evaluation has been performed; synthetic assets are not clinician-reviewed. Docker Compose remains unverified because Docker is unavailable in this execution workspace. See the [Phase 0 decision record](phase_0_decisions.md) and [phase plans](../plan/).

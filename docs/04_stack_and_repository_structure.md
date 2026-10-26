@@ -8,7 +8,7 @@
 | Accessibility/i18n | next-intl, Noto Sans Tamil/Devanagari, large text, axe + manual WCAG AA checks | Language only considered supported after end-to-end fluent review. |
 | Evidence UI | Custom React claim/source component | Exact quote discoverability, keyboard and screen-reader accessible. |
 | API | FastAPI, Python 3.12, Pydantic v2, async httpx | Typed contracts and Python evaluation ecosystem. |
-| LLM | Provider adapter planned for Anthropic direct, OpenRouter, and optional local Ollama | Server-side keys/base URLs/models; provider disabled by default. Adapters and structured-output compatibility are future Phase 2 work; validate terms, schema support, image limits, cost, latency, and privacy per provider. |
+| LLM | Implemented server-side adapters for Anthropic direct, OpenRouter, and Ollama | `MODEL_PROVIDER=disabled` by default; no silent failover; server-side keys; distinct generator and verifier model IDs required. Mock-tested only. Live structured-output compatibility, terms/retention, cost, latency, and privacy remain to be reviewed per model/deployment. Ollama is not presumed local. |
 | PII | Microsoft Presidio + custom recognizers | Best-effort detection; measure false negatives and preserve citation mapping. |
 | Glossary | NCI Dictionary/Thesaurus + SQLite FTS5 cache | Deterministic source lookup; access/licensing/caching terms not yet confirmed. |
 | Trials | ClinicalTrials.gov API v2, TTL/rate-limited cache | Public data; “ask clinician” only, never eligibility decision. |
