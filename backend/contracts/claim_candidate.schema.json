@@ -1,0 +1,97 @@
+{
+  "$defs": {
+    "ClaimCitation": {
+      "additionalProperties": false,
+      "properties": {
+        "evidence": {
+          "$ref": "#/$defs/EvidenceSpan"
+        },
+        "fact_id": {
+          "pattern": "^[a-z][a-z0-9_]{1,47}$",
+          "title": "Fact Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "fact_id",
+        "evidence"
+      ],
+      "title": "ClaimCitation",
+      "type": "object"
+    },
+    "EvidenceSpan": {
+      "additionalProperties": false,
+      "description": "Zero-based Python Unicode-codepoint offsets; end is exclusive; no normalization.",
+      "properties": {
+        "end": {
+          "exclusiveMinimum": 0,
+          "title": "End",
+          "type": "integer"
+        },
+        "quote": {
+          "maxLength": 2000,
+          "minLength": 1,
+          "title": "Quote",
+          "type": "string"
+        },
+        "start": {
+          "minimum": 0,
+          "title": "Start",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "quote",
+        "start",
+        "end"
+      ],
+      "title": "EvidenceSpan",
+      "type": "object"
+    }
+  },
+  "$id": "https://lumen.invalid/contracts/v1.0.0/claim_candidate.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "Internal candidate: never display unless verification == supported.",
+  "properties": {
+    "citations": {
+      "items": {
+        "$ref": "#/$defs/ClaimCitation"
+      },
+      "maxItems": 8,
+      "minItems": 1,
+      "title": "Citations",
+      "type": "array"
+    },
+    "claim_id": {
+      "pattern": "^[a-z][a-z0-9_]{1,47}$",
+      "title": "Claim Id",
+      "type": "string"
+    },
+    "text": {
+      "maxLength": 500,
+      "minLength": 1,
+      "title": "Text",
+      "type": "string"
+    },
+    "verification": {
+      "default": "pending",
+      "enum": [
+        "pending",
+        "supported",
+        "unsupported",
+        "error"
+      ],
+      "title": "Verification",
+      "type": "string"
+    }
+  },
+  "required": [
+    "claim_id",
+    "text",
+    "citations"
+  ],
+  "title": "ClaimCandidate",
+  "type": "object",
+  "x-contract-version": "1.0.0"
+}

@@ -1,0 +1,123 @@
+{
+  "$defs": {
+    "EvidenceSpan": {
+      "additionalProperties": false,
+      "description": "Zero-based Python Unicode-codepoint offsets; end is exclusive; no normalization.",
+      "properties": {
+        "end": {
+          "exclusiveMinimum": 0,
+          "title": "End",
+          "type": "integer"
+        },
+        "quote": {
+          "maxLength": 2000,
+          "minLength": 1,
+          "title": "Quote",
+          "type": "string"
+        },
+        "start": {
+          "minimum": 0,
+          "title": "Start",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "quote",
+        "start",
+        "end"
+      ],
+      "title": "EvidenceSpan",
+      "type": "object"
+    },
+    "ExtractedFact": {
+      "additionalProperties": false,
+      "description": "A report fact or an explicit absence/ambiguity marker with its provenance.",
+      "properties": {
+        "evidence": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/EvidenceSpan"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "fact_id": {
+          "pattern": "^[a-z][a-z0-9_]{1,47}$",
+          "title": "Fact Id",
+          "type": "string"
+        },
+        "field": {
+          "enum": [
+            "report_type",
+            "primary_site",
+            "cancer_type",
+            "histology",
+            "grade",
+            "stage",
+            "margins",
+            "lymph_nodes",
+            "lymphovascular_invasion",
+            "biomarkers",
+            "molecular_test_status",
+            "distant_metastasis",
+            "tumor_size",
+            "other_findings"
+          ],
+          "title": "Field",
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "stated",
+            "not_stated",
+            "unclear"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "maxLength": 500,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Value"
+        }
+      },
+      "required": [
+        "fact_id",
+        "field",
+        "value",
+        "status",
+        "evidence"
+      ],
+      "title": "ExtractedFact",
+      "type": "object"
+    }
+  },
+  "$id": "https://lumen.invalid/contracts/v1.0.0/fact_extraction.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "facts": {
+      "items": {
+        "$ref": "#/$defs/ExtractedFact"
+      },
+      "maxItems": 100,
+      "title": "Facts",
+      "type": "array"
+    }
+  },
+  "required": [
+    "facts"
+  ],
+  "title": "FactExtraction",
+  "type": "object",
+  "x-contract-version": "1.0.0"
+}

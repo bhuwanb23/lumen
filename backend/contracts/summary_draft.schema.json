@@ -1,0 +1,168 @@
+{
+  "$defs": {
+    "ClaimCandidate": {
+      "additionalProperties": false,
+      "description": "Internal candidate: never display unless verification == supported.",
+      "properties": {
+        "citations": {
+          "items": {
+            "$ref": "#/$defs/ClaimCitation"
+          },
+          "maxItems": 8,
+          "minItems": 1,
+          "title": "Citations",
+          "type": "array"
+        },
+        "claim_id": {
+          "pattern": "^[a-z][a-z0-9_]{1,47}$",
+          "title": "Claim Id",
+          "type": "string"
+        },
+        "text": {
+          "maxLength": 500,
+          "minLength": 1,
+          "title": "Text",
+          "type": "string"
+        },
+        "verification": {
+          "default": "pending",
+          "enum": [
+            "pending",
+            "supported",
+            "unsupported",
+            "error"
+          ],
+          "title": "Verification",
+          "type": "string"
+        }
+      },
+      "required": [
+        "claim_id",
+        "text",
+        "citations"
+      ],
+      "title": "ClaimCandidate",
+      "type": "object"
+    },
+    "ClaimCitation": {
+      "additionalProperties": false,
+      "properties": {
+        "evidence": {
+          "$ref": "#/$defs/EvidenceSpan"
+        },
+        "fact_id": {
+          "pattern": "^[a-z][a-z0-9_]{1,47}$",
+          "title": "Fact Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "fact_id",
+        "evidence"
+      ],
+      "title": "ClaimCitation",
+      "type": "object"
+    },
+    "EvidenceSpan": {
+      "additionalProperties": false,
+      "description": "Zero-based Python Unicode-codepoint offsets; end is exclusive; no normalization.",
+      "properties": {
+        "end": {
+          "exclusiveMinimum": 0,
+          "title": "End",
+          "type": "integer"
+        },
+        "quote": {
+          "maxLength": 2000,
+          "minLength": 1,
+          "title": "Quote",
+          "type": "string"
+        },
+        "start": {
+          "minimum": 0,
+          "title": "Start",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "quote",
+        "start",
+        "end"
+      ],
+      "title": "EvidenceSpan",
+      "type": "object"
+    },
+    "QuestionCandidate": {
+      "additionalProperties": false,
+      "description": "Internal question candidate; only approved questions can appear in an API response.",
+      "properties": {
+        "cited_fact_ids": {
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 8,
+          "minItems": 1,
+          "title": "Cited Fact Ids",
+          "type": "array"
+        },
+        "question_id": {
+          "pattern": "^[a-z][a-z0-9_]{1,47}$",
+          "title": "Question Id",
+          "type": "string"
+        },
+        "review_status": {
+          "default": "pending",
+          "enum": [
+            "pending",
+            "approved",
+            "rejected"
+          ],
+          "title": "Review Status",
+          "type": "string"
+        },
+        "text": {
+          "maxLength": 300,
+          "minLength": 5,
+          "pattern": "\\?\\s*$",
+          "title": "Text",
+          "type": "string"
+        }
+      },
+      "required": [
+        "question_id",
+        "text",
+        "cited_fact_ids"
+      ],
+      "title": "QuestionCandidate",
+      "type": "object"
+    }
+  },
+  "$id": "https://lumen.invalid/contracts/v1.0.0/summary_draft.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "claims": {
+      "items": {
+        "$ref": "#/$defs/ClaimCandidate"
+      },
+      "maxItems": 20,
+      "title": "Claims",
+      "type": "array"
+    },
+    "questions_for_care_team": {
+      "items": {
+        "$ref": "#/$defs/QuestionCandidate"
+      },
+      "maxItems": 12,
+      "title": "Questions For Care Team",
+      "type": "array"
+    }
+  },
+  "required": [
+    "claims",
+    "questions_for_care_team"
+  ],
+  "title": "SummaryDraft",
+  "type": "object",
+  "x-contract-version": "1.0.0"
+}

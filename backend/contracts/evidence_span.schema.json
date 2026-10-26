@@ -1,0 +1,32 @@
+{
+  "$id": "https://lumen.invalid/contracts/v1.0.0/evidence_span.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "Zero-based Python Unicode-codepoint offsets; end is exclusive; no normalization.",
+  "properties": {
+    "end": {
+      "exclusiveMinimum": 0,
+      "title": "End",
+      "type": "integer"
+    },
+    "quote": {
+      "maxLength": 2000,
+      "minLength": 1,
+      "title": "Quote",
+      "type": "string"
+    },
+    "start": {
+      "minimum": 0,
+      "title": "Start",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "quote",
+    "start",
+    "end"
+  ],
+  "title": "EvidenceSpan",
+  "type": "object",
+  "x-contract-version": "1.0.0"
+}

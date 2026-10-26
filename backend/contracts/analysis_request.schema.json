@@ -1,0 +1,36 @@
+{
+  "$id": "https://lumen.invalid/contracts/v1.0.0/analysis_request.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "Text-only request; preserve source text exactly without Unicode normalization.",
+  "properties": {
+    "language": {
+      "const": "en",
+      "default": "en",
+      "title": "Language",
+      "type": "string"
+    },
+    "reading_level": {
+      "default": "simple",
+      "enum": [
+        "simple",
+        "standard",
+        "detailed"
+      ],
+      "title": "Reading Level",
+      "type": "string"
+    },
+    "report_text": {
+      "maxLength": 50000,
+      "minLength": 20,
+      "title": "Report Text",
+      "type": "string"
+    }
+  },
+  "required": [
+    "report_text"
+  ],
+  "title": "AnalysisRequest",
+  "type": "object",
+  "x-contract-version": "1.0.0"
+}

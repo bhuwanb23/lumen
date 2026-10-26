@@ -1,12 +1,13 @@
 # Lumen — Phase 0 bootstrap
 
-Lumen is planned as a cautious, source-linked companion that helps patients understand report wording and prepare questions for their care team. **This is only the Phase 0 application shell. Report analysis is not implemented.**
+Lumen is planned as a cautious, source-linked companion that helps patients understand report wording and prepare questions for their care team. The application is still only the **Phase 0 shell**; Phase 1 now defines contracts and synthetic evaluation fixtures, but **report analysis is not implemented**.
 
 ## Current status
 - Next.js 16 / TypeScript accessible setup-status page and same-origin health proxy.
 - FastAPI health service with restricted CORS, no-store, and baseline security headers.
 - Python 3.12 and Node 20.20.2 runtime pins; backend and frontend dependency locks.
 - Docker Compose configuration is prepared. It was not run in this workspace because Docker CLI is unavailable here.
+- Phase 1 Pydantic/JSON contracts and synthetic fixtures/answer keys/red-team cases are present.
 - No report input, OCR, model adapter, trials, translations, or patient-data processing exists yet.
 - **Do not enter real patient data.** Lumen is not medical advice or a clinical tool.
 
