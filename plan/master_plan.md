@@ -1,6 +1,6 @@
 # Lumen master execution plan
 
-**Planning date:** 25 October 2026, IST. **Working submission deadline assumption:** 28 October 2026. Confirm the organizer cutoff/time zone immediately; target submission on Oct 27 to leave buffer. **Status:** Phase 0 bootstrap complete in the current workspace; Phase 1 has not started. The analysis pipeline is not implemented.
+**Planning date:** 25 October 2026, IST. **Working submission deadline assumption:** 28 October 2026. Confirm the organizer cutoff/time zone immediately; target submission on Oct 27 to leave buffer. **Status:** Phases 0 and 1 are complete in the current workspace; Phase 2 has not started. The analysis pipeline is not implemented.
 
 ## Critical path
 | Phase | Focus | Planned window (IST) | Gate/outcome |
