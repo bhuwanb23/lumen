@@ -6,7 +6,7 @@ Lumen is a cautious, source-linked prototype for explaining wording in cancer pa
 
 - Phases 0–3 are implemented. The responsive text-only UI and same-origin vertical demo loop pass 10/10 Playwright tests; the browser-to-FastAPI integration test deliberately runs with the model provider disabled. Backend regression suite: 64 passed.
 - Phase 4 deferred PDF/photo, Presidio, additional language, and integrations. Phase 5 software hardening is documented, but **Gate 2 is not passed**: no model evaluation/human claim labels or manual screen-reader review; see `plan/phase_5.md` and `eval/phase_5_report.md`.
-- Phase 6 local readiness prep is documented, but **Gate 3/submission is blocked** pending Gate 2, event/cutoff confirmation, license, deployment review, and user-owned Git/submission steps; see `plan/phase_6.md`.
+- Phase 6 local readiness prep is documented, but **Gate 3/submission is blocked** pending Gate 2, event/cutoff confirmation, license, deployment review, and user-owned Git/submission steps; see `plan/phase_6.md`. Phase 7 pitch drafts are prepared but un-rehearsed; no event schedule, submitted build, or backup video is confirmed (`docs/phase_7_pitch_pack.md`).
 - The browser UI and FastAPI API support English-only, text-only analysis. No image/PDF/OCR, translation, trial search, or report storage is implemented.
 - `MODEL_PROVIDER=disabled` is the default. Real provider use requires an explicit provider selection, server-side credentials when applicable, and two distinct model IDs (generator and verifier).
 - Provider adapters are covered by mock tests only. Live API compatibility, selected-model quality, data retention/terms, cost, and latency have **not** been tested.

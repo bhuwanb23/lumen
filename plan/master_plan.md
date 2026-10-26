@@ -12,7 +12,7 @@
 | 4 | Conditional file input, privacy, one reviewed language | Completed Oct 26 | No-go on A–D; insufficient reviewer, mapping, terms, or feature-specific tests; all deferred |
 | 5 | Evaluation, red team, accessibility, reliability | Software hardening pass: Oct 26 | Gate 2 **blocked**: automated tests green; model/human evaluation and manual accessibility review outstanding |
 | 6 | Feature freeze, documentation, Devpost/video, submission | Local prep Oct 26; submission blocked | **Gate 3:** not passed; Gate 2, event details, license, deployment review and receipt outstanding |
-| 7 | Finals/demo rehearsal/judging if scheduled | Oct 28–Nov 1 | Rehearsed stable demo; no scope creep |
+| 7 | Finals/demo rehearsal/judging if scheduled | Conditional; pitch drafts Oct 26 | Readiness blocked pending Phase 6, Gate 2, event/judging details and tested fallback |
 | 8 | Post-event validation/pilot pathway | After event / from Nov 2 | Review and formal approval path; not deployment authorization |
 
 “H1/H2” are effort blocks, not exact clock times. Rebase if the official cutoff differs or a gate slips. Elapsed time alone never passes a gate.
