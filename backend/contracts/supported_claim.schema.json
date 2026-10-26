@@ -1,0 +1,92 @@
+{
+  "$defs": {
+    "ClaimCitation": {
+      "additionalProperties": false,
+      "properties": {
+        "evidence": {
+          "$ref": "#/$defs/EvidenceSpan"
+        },
+        "fact_id": {
+          "pattern": "^[a-z][a-z0-9_]{1,47}$",
+          "title": "Fact Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "fact_id",
+        "evidence"
+      ],
+      "title": "ClaimCitation",
+      "type": "object"
+    },
+    "EvidenceSpan": {
+      "additionalProperties": false,
+      "description": "Zero-based Python Unicode-codepoint offsets; end is exclusive; no normalization.",
+      "properties": {
+        "end": {
+          "exclusiveMinimum": 0,
+          "title": "End",
+          "type": "integer"
+        },
+        "quote": {
+          "maxLength": 2000,
+          "minLength": 1,
+          "title": "Quote",
+          "type": "string"
+        },
+        "start": {
+          "minimum": 0,
+          "title": "Start",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "quote",
+        "start",
+        "end"
+      ],
+      "title": "EvidenceSpan",
+      "type": "object"
+    }
+  },
+  "$id": "https://lumen.invalid/contracts/v2.0.0/supported_claim.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "Public response form; unsupported/pending states are not representable here.",
+  "properties": {
+    "citations": {
+      "items": {
+        "$ref": "#/$defs/ClaimCitation"
+      },
+      "maxItems": 8,
+      "minItems": 1,
+      "title": "Citations",
+      "type": "array"
+    },
+    "claim_id": {
+      "pattern": "^[a-z][a-z0-9_]{1,47}$",
+      "title": "Claim Id",
+      "type": "string"
+    },
+    "text": {
+      "maxLength": 500,
+      "minLength": 1,
+      "title": "Text",
+      "type": "string"
+    },
+    "verification": {
+      "const": "supported",
+      "default": "supported",
+      "title": "Verification",
+      "type": "string"
+    }
+  },
+  "required": [
+    "claim_id",
+    "text",
+    "citations"
+  ],
+  "title": "SupportedClaim",
+  "type": "object",
+  "x-contract-version": "2.0.0"
+}

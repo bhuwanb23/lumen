@@ -1,0 +1,25 @@
+{
+  "$id": "https://lumen.invalid/contracts/v2.0.0/claim_citation_draft.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "evidence_quote": {
+      "maxLength": 2000,
+      "minLength": 1,
+      "title": "Evidence Quote",
+      "type": "string"
+    },
+    "fact_id": {
+      "pattern": "^[a-z][a-z0-9_]{1,47}$",
+      "title": "Fact Id",
+      "type": "string"
+    }
+  },
+  "required": [
+    "fact_id",
+    "evidence_quote"
+  ],
+  "title": "ClaimCitationDraft",
+  "type": "object",
+  "x-contract-version": "2.0.0"
+}

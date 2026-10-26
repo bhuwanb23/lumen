@@ -1,0 +1,42 @@
+{
+  "$id": "https://lumen.invalid/contracts/v2.0.0/approved_question.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "cited_fact_ids": {
+      "items": {
+        "type": "string"
+      },
+      "maxItems": 8,
+      "minItems": 1,
+      "title": "Cited Fact Ids",
+      "type": "array"
+    },
+    "question_id": {
+      "pattern": "^[a-z][a-z0-9_]{1,47}$",
+      "title": "Question Id",
+      "type": "string"
+    },
+    "review_status": {
+      "const": "approved",
+      "default": "approved",
+      "title": "Review Status",
+      "type": "string"
+    },
+    "text": {
+      "maxLength": 300,
+      "minLength": 5,
+      "pattern": "\\?\\s*$",
+      "title": "Text",
+      "type": "string"
+    }
+  },
+  "required": [
+    "question_id",
+    "text",
+    "cited_fact_ids"
+  ],
+  "title": "ApprovedQuestion",
+  "type": "object",
+  "x-contract-version": "2.0.0"
+}

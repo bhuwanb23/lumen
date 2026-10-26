@@ -1,0 +1,70 @@
+{
+  "$id": "https://lumen.invalid/contracts/v2.0.0/fact_draft.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "Model extraction form: exact quote only; offsets are calculated by the server.",
+  "properties": {
+    "evidence_quote": {
+      "anyOf": [
+        {
+          "maxLength": 2000,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Evidence Quote"
+    },
+    "field": {
+      "enum": [
+        "report_type",
+        "primary_site",
+        "cancer_type",
+        "histology",
+        "grade",
+        "stage",
+        "margins",
+        "lymph_nodes",
+        "lymphovascular_invasion",
+        "biomarkers",
+        "molecular_test_status",
+        "distant_metastasis",
+        "tumor_size",
+        "other_findings"
+      ],
+      "title": "Field",
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "stated",
+        "not_stated",
+        "unclear"
+      ],
+      "title": "Status",
+      "type": "string"
+    },
+    "value": {
+      "anyOf": [
+        {
+          "maxLength": 500,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Value"
+    }
+  },
+  "required": [
+    "field",
+    "value",
+    "status"
+  ],
+  "title": "FactDraft",
+  "type": "object",
+  "x-contract-version": "2.0.0"
+}

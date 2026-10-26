@@ -31,7 +31,7 @@
     },
     "ExtractedFact": {
       "additionalProperties": false,
-      "description": "A report fact or an explicit absence/ambiguity marker with its provenance.",
+      "description": "Canonical fact with deterministic ID and exact server-calculated source span.",
       "properties": {
         "evidence": {
           "anyOf": [
@@ -101,7 +101,7 @@
       "type": "object"
     }
   },
-  "$id": "https://lumen.invalid/contracts/v1.0.0/fact_extraction.schema.json",
+  "$id": "https://lumen.invalid/contracts/v2.0.0/fact_extraction.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "properties": {
@@ -119,5 +119,5 @@
   ],
   "title": "FactExtraction",
   "type": "object",
-  "x-contract-version": "1.0.0"
+  "x-contract-version": "2.0.0"
 }

@@ -1,0 +1,22 @@
+{
+  "$id": "https://lumen.invalid/contracts/v2.0.0/claim_verification_result.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "Verifier whitelists fully supported claim IDs; omitted IDs are rejected.",
+  "properties": {
+    "supported_claim_ids": {
+      "items": {
+        "type": "string"
+      },
+      "maxItems": 20,
+      "title": "Supported Claim Ids",
+      "type": "array"
+    }
+  },
+  "required": [
+    "supported_claim_ids"
+  ],
+  "title": "ClaimVerificationResult",
+  "type": "object",
+  "x-contract-version": "2.0.0"
+}

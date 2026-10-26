@@ -1,9 +1,19 @@
 {
-  "$id": "https://lumen.invalid/contracts/v1.0.0/analysis_request.schema.json",
+  "$id": "https://lumen.invalid/contracts/v2.0.0/analysis_request.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "description": "Text-only request; preserve source text exactly without Unicode normalization.",
   "properties": {
+    "data_is_synthetic_or_deidentified": {
+      "default": false,
+      "title": "Data Is Synthetic Or Deidentified",
+      "type": "boolean"
+    },
+    "external_processing_acknowledged": {
+      "default": false,
+      "title": "External Processing Acknowledged",
+      "type": "boolean"
+    },
     "language": {
       "const": "en",
       "default": "en",
@@ -25,6 +35,19 @@
       "minLength": 20,
       "title": "Report Text",
       "type": "string"
+    },
+    "user_question": {
+      "anyOf": [
+        {
+          "maxLength": 500,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "User Question"
     }
   },
   "required": [
@@ -32,5 +55,5 @@
   ],
   "title": "AnalysisRequest",
   "type": "object",
-  "x-contract-version": "1.0.0"
+  "x-contract-version": "2.0.0"
 }

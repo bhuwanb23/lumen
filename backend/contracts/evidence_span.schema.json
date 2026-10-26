@@ -1,5 +1,5 @@
 {
-  "$id": "https://lumen.invalid/contracts/v1.0.0/evidence_span.schema.json",
+  "$id": "https://lumen.invalid/contracts/v2.0.0/evidence_span.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "description": "Zero-based Python Unicode-codepoint offsets; end is exclusive; no normalization.",
@@ -28,5 +28,5 @@
   ],
   "title": "EvidenceSpan",
   "type": "object",
-  "x-contract-version": "1.0.0"
+  "x-contract-version": "2.0.0"
 }

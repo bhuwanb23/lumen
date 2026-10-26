@@ -49,7 +49,7 @@
       "type": "object"
     }
   },
-  "$id": "https://lumen.invalid/contracts/v1.0.0/claim_candidate.schema.json",
+  "$id": "https://lumen.invalid/contracts/v2.0.0/claim_candidate.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "description": "Internal candidate: never display unless verification == supported.",
@@ -93,5 +93,5 @@
   ],
   "title": "ClaimCandidate",
   "type": "object",
-  "x-contract-version": "1.0.0"
+  "x-contract-version": "2.0.0"
 }

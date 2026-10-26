@@ -1,0 +1,54 @@
+{
+  "$defs": {
+    "ClaimCitationDraft": {
+      "additionalProperties": false,
+      "properties": {
+        "evidence_quote": {
+          "maxLength": 2000,
+          "minLength": 1,
+          "title": "Evidence Quote",
+          "type": "string"
+        },
+        "fact_id": {
+          "pattern": "^[a-z][a-z0-9_]{1,47}$",
+          "title": "Fact Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "fact_id",
+        "evidence_quote"
+      ],
+      "title": "ClaimCitationDraft",
+      "type": "object"
+    }
+  },
+  "$id": "https://lumen.invalid/contracts/v2.0.0/claim_draft.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "Unverified model claim; IDs and offsets are assigned/checked by the server.",
+  "properties": {
+    "citations": {
+      "items": {
+        "$ref": "#/$defs/ClaimCitationDraft"
+      },
+      "maxItems": 8,
+      "minItems": 1,
+      "title": "Citations",
+      "type": "array"
+    },
+    "text": {
+      "maxLength": 500,
+      "minLength": 1,
+      "title": "Text",
+      "type": "string"
+    }
+  },
+  "required": [
+    "text",
+    "citations"
+  ],
+  "title": "ClaimDraft",
+  "type": "object",
+  "x-contract-version": "2.0.0"
+}

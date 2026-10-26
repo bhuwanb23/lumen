@@ -137,9 +137,10 @@
       "type": "object"
     }
   },
-  "$id": "https://lumen.invalid/contracts/v1.0.0/summary_draft.schema.json",
+  "$id": "https://lumen.invalid/contracts/v2.0.0/summary_draft.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
+  "description": "General contract draft retained for compatibility; pipeline uses ExplanationDraft.",
   "properties": {
     "claims": {
       "items": {
@@ -164,5 +165,5 @@
   ],
   "title": "SummaryDraft",
   "type": "object",
-  "x-contract-version": "1.0.0"
+  "x-contract-version": "2.0.0"
 }

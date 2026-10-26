@@ -89,7 +89,7 @@
     },
     "ExtractedFact": {
       "additionalProperties": false,
-      "description": "A report fact or an explicit absence/ambiguity marker with its provenance.",
+      "description": "Canonical fact with deterministic ID and exact server-calculated source span.",
       "properties": {
         "evidence": {
           "anyOf": [
@@ -198,7 +198,7 @@
       "type": "object"
     }
   },
-  "$id": "https://lumen.invalid/contracts/v1.0.0/analysis_response.schema.json",
+  "$id": "https://lumen.invalid/contracts/v2.0.0/analysis_response.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "properties": {
@@ -234,6 +234,19 @@
       "title": "Omitted Claim Count",
       "type": "integer"
     },
+    "query_notice": {
+      "anyOf": [
+        {
+          "const": "I can't guess missing information. Fields marked 'Not stated in this excerpt' are absent from the submitted text; ask your care team to clarify.",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Query Notice"
+    },
     "questions_for_care_team": {
       "items": {
         "$ref": "#/$defs/ApprovedQuestion"
@@ -251,10 +264,45 @@
       "title": "Reading Level",
       "type": "string"
     },
+    "refusal_category": {
+      "anyOf": [
+        {
+          "enum": [
+            "prognosis",
+            "treatment",
+            "dose",
+            "diagnosis",
+            "urgent_symptoms",
+            "trial_eligibility",
+            "policy_evasion"
+          ],
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Refusal Category"
+    },
+    "refusal_message": {
+      "anyOf": [
+        {
+          "maxLength": 500,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Refusal Message"
+    },
     "status": {
       "enum": [
         "complete",
-        "no_supported_claims"
+        "no_supported_claims",
+        "refused"
       ],
       "title": "Status",
       "type": "string"
@@ -271,5 +319,5 @@
   ],
   "title": "AnalysisResponse",
   "type": "object",
-  "x-contract-version": "1.0.0"
+  "x-contract-version": "2.0.0"
 }

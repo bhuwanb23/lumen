@@ -1,0 +1,22 @@
+{
+  "$id": "https://lumen.invalid/contracts/v2.0.0/fact_verification_result.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "Verifier whitelists fully supported facts; omitted IDs are rejected.",
+  "properties": {
+    "supported_fact_ids": {
+      "items": {
+        "type": "string"
+      },
+      "maxItems": 14,
+      "title": "Supported Fact Ids",
+      "type": "array"
+    }
+  },
+  "required": [
+    "supported_fact_ids"
+  ],
+  "title": "FactVerificationResult",
+  "type": "object",
+  "x-contract-version": "2.0.0"
+}
