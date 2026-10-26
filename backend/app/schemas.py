@@ -1,9 +1,9 @@
-"""Versioned Phase 1 contracts; no model pipeline uses them yet."""
+"""Versioned contracts for source-grounded report explanation; no schema is a medical validation."""
 
 from __future__ import annotations
 
 from collections.abc import Sequence
-from typing import Literal
+from typing import Literal, get_args
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
@@ -11,10 +11,23 @@ SupportedLanguage = Literal["en"]  # Expand only after end-to-end fluent review.
 ReadingLevel = Literal["simple", "standard", "detailed"]
 FactStatus = Literal["stated", "not_stated", "unclear"]
 VerificationState = Literal["pending", "supported", "unsupported", "error"]
+RefusalCategory = Literal[
+    "prognosis",
+    "treatment",
+    "dose",
+    "diagnosis",
+    "urgent_symptoms",
+    "trial_eligibility",
+    "policy_evasion",
+]
 
 Disclaimer = Literal[
     "Lumen explains report wording; it is not medical advice. It does not diagnose, "
     "predict outcomes, or recommend treatment. Confirm meaning with your care team."
+]
+SafeQueryNotice = Literal[
+    "I can't guess missing information. Fields marked 'Not stated in this excerpt' are absent "
+    "from the submitted text; ask your care team to clarify."
 ]
 STANDARD_DISCLAIMER: Disclaimer = (
     "Lumen explains report wording; it is not medical advice. It does not diagnose, "
@@ -37,6 +50,7 @@ FactField = Literal[
     "tumor_size",
     "other_findings",
 ]
+ALL_FACT_FIELDS = get_args(FactField)
 
 
 class StrictModel(BaseModel):
@@ -47,13 +61,18 @@ class AnalysisRequest(StrictModel):
     """Text-only request; preserve source text exactly without Unicode normalization."""
 
     report_text: str = Field(min_length=20, max_length=50_000)
+    user_question: str | None = Field(default=None, max_length=500)
     language: SupportedLanguage = "en"
     reading_level: ReadingLevel = "simple"
+    data_is_synthetic_or_deidentified: bool = False
+    external_processing_acknowledged: bool = False
 
     @model_validator(mode="after")
-    def report_must_contain_non_whitespace(self) -> AnalysisRequest:
+    def request_text_is_valid(self) -> AnalysisRequest:
         if not self.report_text.strip():
             raise ValueError("report_text must contain non-whitespace text")
+        if self.user_question is not None and not self.user_question.strip():
+            raise ValueError("user_question must be omitted or contain non-whitespace text")
         return self
 
 
@@ -73,8 +92,42 @@ class EvidenceSpan(StrictModel):
         return self
 
 
+class FactDraft(StrictModel):
+    """Model extraction form: exact quote only; offsets are calculated by the server."""
+
+    field: FactField
+    value: str | None = Field(max_length=500)
+    status: FactStatus
+    evidence_quote: str | None = Field(default=None, max_length=2_000)
+
+    @model_validator(mode="after")
+    def status_matches_quote_presence(self) -> FactDraft:
+        if self.status == "stated" and (not self.value or not self.evidence_quote):
+            raise ValueError("stated facts require a value and verbatim evidence_quote")
+        if self.status == "not_stated" and (
+            self.value is not None or self.evidence_quote is not None
+        ):
+            raise ValueError("not_stated facts must have null value and evidence_quote")
+        if self.status == "unclear" and (not self.value or not self.evidence_quote):
+            raise ValueError("unclear facts require an ambiguity description and evidence_quote")
+        return self
+
+
+class FactExtractionDraft(StrictModel):
+    """The extraction model must account for every allowlisted field exactly once."""
+
+    facts: list[FactDraft] = Field(min_length=14, max_length=14)
+
+    @model_validator(mode="after")
+    def all_fields_appear_once(self) -> FactExtractionDraft:
+        fields = [fact.field for fact in self.facts]
+        if len(fields) != len(set(fields)) or set(fields) != set(ALL_FACT_FIELDS):
+            raise ValueError("extraction must contain each allowed field exactly once")
+        return self
+
+
 class ExtractedFact(StrictModel):
-    """A report fact or an explicit absence/ambiguity marker with its provenance."""
+    """Canonical fact with deterministic ID and exact server-calculated source span."""
 
     fact_id: str = Field(pattern=r"^[a-z][a-z0-9_]{1,47}$")
     field: FactField
@@ -104,6 +157,34 @@ class FactExtraction(StrictModel):
         return self
 
 
+class FactVerificationResult(StrictModel):
+    """Verifier whitelists fully supported facts; omitted IDs are rejected."""
+
+    supported_fact_ids: list[str] = Field(max_length=14)
+
+    @model_validator(mode="after")
+    def unique_fact_ids(self) -> FactVerificationResult:
+        if len(self.supported_fact_ids) != len(set(self.supported_fact_ids)):
+            raise ValueError("supported_fact_ids must be unique")
+        return self
+
+
+class ClaimCitationDraft(StrictModel):
+    fact_id: str = Field(pattern=r"^[a-z][a-z0-9_]{1,47}$")
+    evidence_quote: str = Field(min_length=1, max_length=2_000)
+
+
+class ClaimDraft(StrictModel):
+    """Unverified model claim; IDs and offsets are assigned/checked by the server."""
+
+    text: str = Field(min_length=1, max_length=500)
+    citations: list[ClaimCitationDraft] = Field(min_length=1, max_length=8)
+
+
+class ExplanationDraft(StrictModel):
+    claims: list[ClaimDraft] = Field(max_length=20)
+
+
 class ClaimCitation(StrictModel):
     fact_id: str = Field(pattern=r"^[a-z][a-z0-9_]{1,47}$")
     evidence: EvidenceSpan
@@ -116,6 +197,18 @@ class ClaimCandidate(StrictModel):
     text: str = Field(min_length=1, max_length=500)
     citations: list[ClaimCitation] = Field(min_length=1, max_length=8)
     verification: VerificationState = "pending"
+
+
+class ClaimVerificationResult(StrictModel):
+    """Verifier whitelists fully supported claim IDs; omitted IDs are rejected."""
+
+    supported_claim_ids: list[str] = Field(max_length=20)
+
+    @model_validator(mode="after")
+    def unique_claim_ids(self) -> ClaimVerificationResult:
+        if len(self.supported_claim_ids) != len(set(self.supported_claim_ids)):
+            raise ValueError("supported_claim_ids must be unique")
+        return self
 
 
 class QuestionCandidate(StrictModel):
@@ -136,6 +229,8 @@ class QuestionCandidate(StrictModel):
 
 
 class SummaryDraft(StrictModel):
+    """General contract draft retained for compatibility; pipeline uses ExplanationDraft."""
+
     claims: list[ClaimCandidate] = Field(max_length=20)
     questions_for_care_team: list[QuestionCandidate] = Field(max_length=12)
 
@@ -165,7 +260,7 @@ class ApprovedQuestion(StrictModel):
 
 
 class AnalysisResponse(StrictModel):
-    status: Literal["complete", "no_supported_claims"]
+    status: Literal["complete", "no_supported_claims", "refused"]
     language: SupportedLanguage
     reading_level: ReadingLevel
     disclaimer: Disclaimer = STANDARD_DISCLAIMER
@@ -173,6 +268,9 @@ class AnalysisResponse(StrictModel):
     claims: list[SupportedClaim] = Field(max_length=20)
     questions_for_care_team: list[ApprovedQuestion] = Field(max_length=8)
     omitted_claim_count: int = Field(ge=0)
+    query_notice: SafeQueryNotice | None = None
+    refusal_category: RefusalCategory | None = None
+    refusal_message: str | None = Field(default=None, max_length=500)
 
     @model_validator(mode="after")
     def response_is_consistent_and_safe(self) -> AnalysisResponse:
@@ -180,6 +278,19 @@ class AnalysisResponse(StrictModel):
             raise ValueError("complete status requires at least one supported claim")
         if self.status == "no_supported_claims" and self.claims:
             raise ValueError("no_supported_claims status requires an empty claims list")
+        if self.status == "refused":
+            if (
+                self.refusal_category is None
+                or self.query_notice is not None
+                or not self.refusal_message
+                or self.facts
+                or self.claims
+                or self.questions_for_care_team
+                or self.omitted_claim_count != 0
+            ):
+                raise ValueError("refusal responses must be fixed and contain no report analysis")
+        elif self.refusal_category is not None or self.refusal_message is not None:
+            raise ValueError("non-refusal response cannot contain refusal details")
         fact_ids = [fact.fact_id for fact in self.facts]
         if len(fact_ids) != len(set(fact_ids)):
             raise ValueError("response fact_id values must be unique")
@@ -206,7 +317,7 @@ def validate_evidence_links(
     claims: Sequence[ClaimCandidate] | Sequence[SupportedClaim] = (),
     questions: Sequence[QuestionCandidate] | Sequence[ApprovedQuestion] = (),
 ) -> None:
-    """Validate exact quote, offset, and fact-link integrity against the untouched source text."""
+    """Validate exact quote, offset, and fact-link integrity against untouched source text."""
     fact_by_id = {fact.fact_id: fact for fact in facts}
     if len(fact_by_id) != len(facts):
         raise ValueError("fact_id values must be unique")

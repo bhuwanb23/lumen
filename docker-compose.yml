@@ -6,15 +6,22 @@ services:
       APP_ENV: ${APP_ENV:-development}
       LOG_LEVEL: ${LOG_LEVEL:-INFO}
       CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost:3000}
-      # Provider settings are placeholders only; no model adapter or call exists in Phase 0.
+      # Explicit provider choice; disabled by default, with no automatic fallback.
       MODEL_PROVIDER: ${MODEL_PROVIDER:-disabled}
+      MAX_REPORT_CHARS: ${MAX_REPORT_CHARS:-50000}
+      MODEL_TIMEOUT_SECONDS: ${MODEL_TIMEOUT_SECONDS:-45}
+      MODEL_MAX_RETRIES: ${MODEL_MAX_RETRIES:-2}
       ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
       ANTHROPIC_MODEL: ${ANTHROPIC_MODEL:-}
+      ANTHROPIC_VERIFIER_MODEL: ${ANTHROPIC_VERIFIER_MODEL:-}
+      ANTHROPIC_BASE_URL: ${ANTHROPIC_BASE_URL:-https://api.anthropic.com}
       OPENROUTER_API_KEY: ${OPENROUTER_API_KEY:-}
       OPENROUTER_BASE_URL: ${OPENROUTER_BASE_URL:-https://openrouter.ai/api/v1}
       OPENROUTER_MODEL: ${OPENROUTER_MODEL:-}
+      OPENROUTER_VERIFIER_MODEL: ${OPENROUTER_VERIFIER_MODEL:-}
       OLLAMA_BASE_URL: ${OLLAMA_BASE_URL:-http://host.docker.internal:11434}
       OLLAMA_MODEL: ${OLLAMA_MODEL:-}
+      OLLAMA_VERIFIER_MODEL: ${OLLAMA_VERIFIER_MODEL:-}
     extra_hosts:
       - "host.docker.internal:host-gateway"
     ports:

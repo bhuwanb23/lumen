@@ -1,17 +1,14 @@
 from functools import lru_cache
 from typing import Literal
 
+from pydantic import Field
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 ModelProvider = Literal["disabled", "anthropic", "openrouter", "ollama"]
 
 
 class Settings(BaseSettings):
-    """Server-side configuration; provider keys must never reach the browser.
-
-    Phase 0 only records provider settings. No provider adapter or model call exists yet.
-    Keep `model_provider=disabled` until a later phase implements and tests an adapter.
-    """
+    """Server-side configuration; provider keys must never reach the browser."""
 
     model_config = SettingsConfigDict(
         env_file=("../.env", ".env"), extra="ignore", case_sensitive=False
@@ -21,19 +18,26 @@ class Settings(BaseSettings):
     log_level: str = "INFO"
     cors_origins: str = "http://localhost:3000"
     model_provider: ModelProvider = "disabled"
+    max_report_chars: int = Field(default=50_000, ge=100, le=50_000)
+    model_timeout_seconds: float = Field(default=45.0, gt=0, le=120)
+    model_max_retries: int = Field(default=2, ge=0, le=3)
 
     # Direct Anthropic API; server-side only.
     anthropic_api_key: str | None = None
     anthropic_model: str = ""
+    anthropic_verifier_model: str = ""
+    anthropic_base_url: str = "https://api.anthropic.com"
 
     # OpenRouter-compatible endpoint; server-side key only.
     openrouter_api_key: str | None = None
     openrouter_base_url: str = "https://openrouter.ai/api/v1"
     openrouter_model: str = ""
+    openrouter_verifier_model: str = ""
 
-    # Ollama is optional and should be bound to a trusted local interface/network.
+    # Ollama endpoint; do not assume it is local unless network is controlled.
     ollama_base_url: str = "http://127.0.0.1:11434"
     ollama_model: str = ""
+    ollama_verifier_model: str = ""
 
     @property
     def cors_origin_list(self) -> list[str]:
