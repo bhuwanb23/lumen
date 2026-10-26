@@ -1,6 +1,6 @@
 # Lumen master execution plan
 
-**Planning date:** 25 October 2026, IST. **Working submission deadline assumption:** 28 October 2026. Confirm the organizer cutoff/time zone immediately; target submission on Oct 27 to leave buffer. **Status:** Phases 0–3 are implemented; Phase 4 deferred all optional features. Phase 5 software hardening is complete for this pass (10 E2E, 64 backend tests) but Gate 2 is blocked: no model evaluation/human claim labels, manual screen-reader review, live provider validation, Docker Compose, or public deployment/abuse review.
+**Planning date:** 25 October 2026, IST. **Working submission deadline assumption:** 28 October 2026. Confirm the organizer cutoff/time zone immediately; target submission on Oct 27 to leave buffer. **Status:** Phases 0–3 are implemented; Phase 4 deferred optional features. Phase 5 software hardening is complete for this pass (10 E2E, 64 backend tests), but Gate 2 is blocked because model evaluation/human claim labels and manual accessibility review are missing. Phase 6 local readiness prep is complete; submission is on hold pending Gate 2 per user decision. Gate 3 also needs event details, a project license, deployment review, and user-owned Git/submission steps.
 
 ## Critical path
 | Phase | Focus | Planned window (IST) | Gate/outcome |
@@ -11,7 +11,7 @@
 | 3 | UI and source-linked demo loop | Completed Oct 26 | **Gate 1:** passed; 8/8 Playwright E2E, safe disabled-provider flow |
 | 4 | Conditional file input, privacy, one reviewed language | Completed Oct 26 | No-go on A–D; insufficient reviewer, mapping, terms, or feature-specific tests; all deferred |
 | 5 | Evaluation, red team, accessibility, reliability | Software hardening pass: Oct 26 | Gate 2 **blocked**: automated tests green; model/human evaluation and manual accessibility review outstanding |
-| 6 | Feature freeze, documentation, Devpost/video, submission | Oct 27 (reserve through Oct 28 only if needed) | **Gate 3:** submission accepted and receipt saved |
+| 6 | Feature freeze, documentation, Devpost/video, submission | Local prep Oct 26; submission blocked | **Gate 3:** not passed; Gate 2, event details, license, deployment review and receipt outstanding |
 | 7 | Finals/demo rehearsal/judging if scheduled | Oct 28–Nov 1 | Rehearsed stable demo; no scope creep |
 | 8 | Post-event validation/pilot pathway | After event / from Nov 2 | Review and formal approval path; not deployment authorization |
 
