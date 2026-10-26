@@ -4,13 +4,13 @@ Lumen is a cautious, source-linked prototype for explaining wording in cancer pa
 
 ## Current status and limitations
 
-- Phases 0–2 are implemented in the workspace; backend tests use mocks and make no external model calls.
+- Phases 0–3 are implemented in the workspace. Phase 3's responsive text-only UI and same-origin vertical demo loop pass 8/8 Playwright browser tests; the browser-to-FastAPI integration test deliberately runs with the model provider disabled.
 - The browser UI and FastAPI API support English-only, text-only analysis. No image/PDF/OCR, translation, trial search, or report storage is implemented.
 - `MODEL_PROVIDER=disabled` is the default. Real provider use requires an explicit provider selection, server-side credentials when applicable, and two distinct model IDs (generator and verifier).
 - Provider adapters are covered by mock tests only. Live API compatibility, selected-model quality, data retention/terms, cost, and latency have **not** been tested.
 - Synthetic reports, keys, and red-team examples are hand-authored and **not reviewed by oncology clinicians**. No clinical validation or patient-outcome evidence exists.
 - Use synthetic or properly de-identified excerpts only in this prototype. Never submit identifiable or real patient information. Do not use outputs to make care decisions; confirm meanings with a clinician.
-- Docker Compose is documented but was not run in this workspace because Docker is unavailable here.
+- Docker Compose is documented but was not run in this workspace because Docker is unavailable here. The standalone Next.js production server and local production preview were smoke-tested; the Docker deployment remains unverified.
 
 ## Prerequisites
 
@@ -80,8 +80,11 @@ npm ci
 npm run lint
 npm run typecheck
 npm run build
-npm audit --omit=dev
+npm audit
+LD_LIBRARY_PATH=/tmp/lumen-playwright-libs/usr/lib/x86_64-linux-gnu npm run test:e2e
 ```
+
+The `LD_LIBRARY_PATH` override above was needed only in the assistant sandbox, where Chromium system libraries were missing; on a normal workstation install the OS dependencies via Playwright's Linux instructions. `npm run start` launches the standalone production server and stages its static assets locally.
 
 All CI-style adapter and pipeline tests are mock-only; no API key or network call is required.
 
