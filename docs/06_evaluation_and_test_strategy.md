@@ -4,7 +4,7 @@
 Synthetic regression metrics do not establish clinical validity, safety on real reports, population performance, or translation quality. Publish metrics with N, method, model/prompt version, date and caveats. Never hand-fill results.
 
 ## Dataset
-Begin with 8–12 entirely synthetic cases across a narrow declared set of report types/cancer contexts. Each case includes report, gold fields, exact quote/offset, expected missing/unclear fields, ambiguity notes, and forbidden inference. Include pathology and only limited radiology if schema is ready. Keep development cases separate from release regression set. No real or copied reports.
+Phase 1 establishes 8 hand-authored synthetic pathology fixtures (breast, lung, colorectal) with answer keys and 16 synthetic red-team cases. This is narrower than the recommended later 8–12 broader cases; expand only after the contract is stable. See `../eval/annotation_guide.md` and `../eval/metric_definitions.md`. For any later expansion, begin with entirely synthetic cases across a declared report scope. Each case includes report, gold fields, exact quote/offset, expected missing/unclear fields, ambiguity notes, and forbidden inference. Include pathology and only limited radiology if schema is ready. Keep development cases separate from release regression set. No real or copied reports.
 
 ## Metrics
 1. Field extraction precision/recall/F1; separate exact and normalized values.
