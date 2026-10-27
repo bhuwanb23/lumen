@@ -1,32 +1,50 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="350" viewBox="0 0 1200 350">
-    <defs><marker id="arrow3" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#2E7D74"/></marker><marker id="arrow4" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#BE6B58"/></marker></defs>
-    <rect width="1200" height="350" rx="28" fill="#F6F8F5"/>
-    <text x="40" y="42" font-family="Arial,sans-serif" font-size="17" font-weight="700" letter-spacing="2" fill="#2E7D74">THE EVIDENCE GATE</text>
-    <text x="1160" y="42" text-anchor="end" font-family="Arial,sans-serif" font-size="13" fill="#71848A">Intended behavior; live model output not evaluated</text>
-    <g font-family="Arial,sans-serif">
-      <rect x="35" y="80" width="330" height="215" rx="18" fill="#FFFFFF" stroke="#D9E3DF" stroke-width="2"/>
-      <text x="58" y="114" font-size="16" font-weight="700" fill="#18383E">SUBMITTED EXCERPT</text>
-      <text x="58" y="158" font-size="17" fill="#4B6268">Histology: </text><text x="148" y="158" font-size="17" font-weight="700" fill="#2E7D74">[exact cited phrase]</text>
-      <text x="58" y="195" font-size="15" fill="#71848A">The source wording is kept intact.</text>
-      <text x="58" y="230" font-size="14" fill="#4B6268">A missing field stays “not stated”;</text>
-      <text x="58" y="253" font-size="14" fill="#4B6268">it is not converted to a negative.</text>
-      <path d="M371 188 H413" stroke="#2E7D74" stroke-width="3" marker-end="url(#arrow3)"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="480" viewBox="0 0 1400 480">
+  <defs>
+    <marker id="a1" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#176b5b"/></marker>
+    <marker id="a2" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#b45b13"/></marker>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f7f6f1"/><stop offset="100%" stop-color="#eef4f1"/>
+    </linearGradient>
+  </defs>
+  <rect width="1400" height="480" rx="32" fill="url(#g)"/>
+  <text x="48" y="48" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700" letter-spacing="2.5" fill="#176b5b">EVIDENCE BEFORE ELOQUENCE</text>
+  <text x="48" y="82" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700" fill="#193331">How a statement earns its place on screen</text>
+  <text x="1352" y="58" text-anchor="end" font-family="Arial, Helvetica, sans-serif" font-size="13" fill="#526562">Design intent  |  live model quality not measured</text>
 
-      <rect x="427" y="80" width="320" height="215" rx="18" fill="#E3F0EC" stroke="#BBD7CF" stroke-width="2"/>
-      <path d="M587 115 l38 14 v34 c0 30 -19 48 -38 58 -19 -10 -38 -28 -38 -58 v-34z" fill="#FFFFFF" stroke="#2E7D74" stroke-width="3"/>
-      <path d="M569 160 l13 13 25 -29" fill="none" stroke="#2E7D74" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
-      <text x="587" y="245" text-anchor="middle" font-size="19" font-weight="700" fill="#18383E">Evidence + safety checks</text>
-      <text x="587" y="272" text-anchor="middle" font-size="14" fill="#4B6268">Span match; verifier; scope boundaries</text>
-      <path d="M753 152 H800" stroke="#2E7D74" stroke-width="3" marker-end="url(#arrow3)"/>
-      <path d="M753 231 C780 231 780 280 800 280" stroke="#BE6B58" stroke-width="3" fill="none" marker-end="url(#arrow4)"/>
+  <g font-family="Arial, Helvetica, sans-serif">
+    <rect x="48" y="120" width="340" height="280" rx="22" fill="#ffffff" stroke="#d8dfdc" stroke-width="2"/>
+    <text x="78" y="168" font-size="13" font-weight="700" letter-spacing="1.5" fill="#176b5b">STEP 1</text>
+    <text x="78" y="208" font-size="24" font-weight="700" fill="#193331">Submitted excerpt</text>
+    <text x="78" y="248" font-size="16" fill="#526562">The original wording is kept</text>
+    <text x="78" y="274" font-size="16" fill="#526562">intact. Nothing is guessed</text>
+    <text x="78" y="300" font-size="16" fill="#526562">into empty fields.</text>
+    <rect x="78" y="330" width="280" height="42" rx="12" fill="#e8f3ef"/>
+    <text x="218" y="357" text-anchor="middle" font-size="14" font-weight="700" fill="#176b5b">"Not stated" beats a guess</text>
 
-      <rect x="814" y="80" width="350" height="94" rx="17" fill="#FFFFFF" stroke="#2E7D74" stroke-width="2"/>
-      <circle cx="851" cy="127" r="18" fill="#2E7D74"/><path d="M842 127 l6 6 12 -14" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round"/>
-      <text x="884" y="119" font-size="18" font-weight="700" fill="#18383E">Supported path</text>
-      <text x="884" y="145" font-size="14" fill="#4B6268">Statement linked to exact quote</text>
+    <path d="M404 260 H446" stroke="#176b5b" stroke-width="3" marker-end="url(#a1)"/>
 
-      <rect x="814" y="201" width="350" height="94" rx="17" fill="#FFFFFF" stroke="#BE6B58" stroke-width="2"/>
-      <circle cx="851" cy="248" r="18" fill="#F8E7E3"/><path d="M843 240 l16 16 M859 240 l-16 16" stroke="#BE6B58" stroke-width="3" stroke-linecap="round"/>
-      <text x="884" y="240" font-size="18" font-weight="700" fill="#18383E">Withheld / abstain</text>
-      <text x="884" y="266" font-size="14" fill="#4B6268">Unsupported text is not displayed</text>
-    </g></svg>
+    <rect x="460" y="120" width="360" height="280" rx="22" fill="#176b5b"/>
+    <text x="490" y="168" font-size="13" font-weight="700" letter-spacing="1.5" fill="#d7ebe5">STEP 2</text>
+    <text x="490" y="208" font-size="24" font-weight="700" fill="#ffffff">Evidence gate</text>
+    <text x="490" y="248" font-size="16" fill="#d7ebe5">Exact quote match</text>
+    <text x="490" y="274" font-size="16" fill="#d7ebe5">Separate verification pass</text>
+    <text x="490" y="300" font-size="16" fill="#d7ebe5">Fixed safety boundaries</text>
+    <rect x="490" y="330" width="300" height="42" rx="12" fill="rgba(255,255,255,0.14)"/>
+    <text x="640" y="357" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">An untraceable answer fails</text>
+
+    <path d="M836 210 H888" stroke="#176b5b" stroke-width="3" marker-end="url(#a1)"/>
+    <path d="M836 320 C868 320 868 360 888 360" stroke="#b45b13" stroke-width="3" fill="none" marker-end="url(#a2)"/>
+
+    <rect x="902" y="120" width="450" height="118" rx="20" fill="#ffffff" stroke="#176b5b" stroke-width="2.5"/>
+    <circle cx="948" cy="179" r="22" fill="#176b5b"/>
+    <path d="M938 179 l7 7 14 -16" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="988" y="172" font-size="20" font-weight="700" fill="#193331">Shown to the person</text>
+    <text x="988" y="200" font-size="15" fill="#526562">Source-linked statement + exact quote</text>
+
+    <rect x="902" y="282" width="450" height="118" rx="20" fill="#ffffff" stroke="#b45b13" stroke-width="2.5"/>
+    <circle cx="948" cy="341" r="22" fill="#fff4e8"/>
+    <path d="M938 331 l20 20 M958 331 l-20 20" stroke="#b45b13" stroke-width="3" stroke-linecap="round"/>
+    <text x="988" y="334" font-size="20" font-weight="700" fill="#193331">Withheld or refused</text>
+    <text x="988" y="362" font-size="15" fill="#526562">No claim  |  fixed refusal  |  safe error</text>
+  </g>
+</svg>

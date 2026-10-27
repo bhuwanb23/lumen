@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="560" viewBox="0 0 1400 560">
+  <defs>
+    <linearGradient id="pbg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f7f6f1"/><stop offset="100%" stop-color="#eef4f1"/>
+    </linearGradient>
+  </defs>
+  <rect width="1400" height="560" rx="32" fill="url(#pbg)"/>
+  <text x="48" y="48" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700" letter-spacing="2.5" fill="#176b5b">DESIGN PRINCIPLES</text>
+  <text x="48" y="86" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="700" fill="#193331">Four commitments that shape every response</text>
+  <text x="48" y="120" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#526562">Spoken in plain language  -  not as marketing slogans, but as product rules.</text>
+
+  <g font-family="Arial, Helvetica, sans-serif">
+    <rect x="48" y="160" width="640" height="160" rx="22" fill="#ffffff" stroke="#d8dfdc" stroke-width="2"/>
+    <rect x="48" y="160" width="14" height="160" rx="7" fill="#176b5b"/>
+    <text x="90" y="208" font-size="13" font-weight="700" letter-spacing="1.5" fill="#176b5b">01</text>
+    <text x="90" y="246" font-size="24" font-weight="700" fill="#193331">Evidence before eloquence</text>
+    <text x="90" y="280" font-size="16" fill="#526562">If a statement cannot be traced to exact report wording,</text>
+    <text x="90" y="304" font-size="16" fill="#526562">it is treated as a failure  -  not a clever paraphrase.</text>
+
+    <rect x="712" y="160" width="640" height="160" rx="22" fill="#ffffff" stroke="#d8dfdc" stroke-width="2"/>
+    <rect x="712" y="160" width="14" height="160" rx="7" fill="#176b5b"/>
+    <text x="754" y="208" font-size="13" font-weight="700" letter-spacing="1.5" fill="#176b5b">02</text>
+    <text x="754" y="246" font-size="24" font-weight="700" fill="#193331">Absence is not a negative</text>
+    <text x="754" y="280" font-size="16" fill="#526562">Missing information stays not stated in this excerpt.</text>
+    <text x="754" y="304" font-size="16" fill="#526562">Lumen will not invent a reassuring or alarming default.</text>
+
+    <rect x="48" y="348" width="640" height="160" rx="22" fill="#ffffff" stroke="#d8dfdc" stroke-width="2"/>
+    <rect x="48" y="348" width="14" height="160" rx="7" fill="#b45b13"/>
+    <text x="90" y="396" font-size="13" font-weight="700" letter-spacing="1.5" fill="#b45b13">03</text>
+    <text x="90" y="434" font-size="24" font-weight="700" fill="#193331">Scope safety is a feature</text>
+    <text x="90" y="468" font-size="16" fill="#526562">No diagnosis, prognosis, treatment advice, dosing,</text>
+    <text x="90" y="492" font-size="16" fill="#526562">trial eligibility, or urgent-symptom triage.</text>
+
+    <rect x="712" y="348" width="640" height="160" rx="22" fill="#ffffff" stroke="#d8dfdc" stroke-width="2"/>
+    <rect x="712" y="348" width="14" height="160" rx="7" fill="#b45b13"/>
+    <text x="754" y="396" font-size="13" font-weight="700" letter-spacing="1.5" fill="#b45b13">04</text>
+    <text x="754" y="434" font-size="24" font-weight="700" fill="#193331">Patient agency, not replacement</text>
+    <text x="754" y="468" font-size="16" fill="#526562">The goal is a clearer conversation with the care team  - </text>
+    <text x="754" y="492" font-size="16" fill="#526562">never a substitute for clinical judgment.</text>
+  </g>
+</svg>

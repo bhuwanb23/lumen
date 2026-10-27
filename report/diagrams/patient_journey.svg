@@ -1,40 +1,51 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="360" viewBox="0 0 1200 360">
-    <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#2E7D74"/></marker></defs>
-    <rect width="1200" height="360" rx="28" fill="#F6F8F5"/>
-    <text x="42" y="42" font-family="Arial,sans-serif" font-size="17" font-weight="700" letter-spacing="2" fill="#2E7D74">THE INTENDED EXPERIENCE</text>
-    <g font-family="Arial,sans-serif">
-      <rect x="35" y="78" width="246" height="205" rx="20" fill="#FFFFFF" stroke="#D9E3DF" stroke-width="2"/>
-      <circle cx="70" cy="117" r="21" fill="#E3F0EC"/><text x="70" y="124" text-anchor="middle" font-size="20" font-weight="700" fill="#2E7D74">1</text>
-      <path d="M118 103 h38 v46 h-38z M125 113 h24 M125 123 h24 M125 133 h18" fill="none" stroke="#2E7D74" stroke-width="3" stroke-linecap="round"/>
-      <text x="58" y="184" font-size="22" font-weight="700" fill="#18383E">A short excerpt</text>
-      <text x="58" y="216" font-size="16" fill="#4B6268">Synthetic or de-identified</text>
-      <text x="58" y="240" font-size="16" fill="#4B6268">text only; English only.</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="420" viewBox="0 0 1400 420">
+  <defs>
+    <marker id="arr" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#176b5b"/></marker>
+    <linearGradient id="paper" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f7f6f1"/><stop offset="100%" stop-color="#eef4f1"/>
+    </linearGradient>
+  </defs>
+  <rect width="1400" height="420" rx="32" fill="url(#paper)"/>
+  <text x="48" y="48" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700" letter-spacing="2.5" fill="#176b5b">FROM REPORT TO CONVERSATION</text>
+  <text x="48" y="78" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700" fill="#193331">The intended patient journey</text>
+  <text x="1352" y="58" text-anchor="end" font-family="Arial, Helvetica, sans-serif" font-size="13" fill="#526562">Prototype concept  |  not clinical use</text>
 
-      <path d="M286 180 H314" stroke="#2E7D74" stroke-width="3" marker-end="url(#arrow)"/>
-      <rect x="328" y="78" width="246" height="205" rx="20" fill="#FFFFFF" stroke="#D9E3DF" stroke-width="2"/>
-      <circle cx="363" cy="117" r="21" fill="#E3F0EC"/><text x="363" y="124" text-anchor="middle" font-size="20" font-weight="700" fill="#2E7D74">2</text>
-      <path d="M425 109 l19 -8 19 8 v16 c0 15 -10 25 -19 30 -10 -5 -19 -15 -19 -30z" fill="none" stroke="#2E7D74" stroke-width="3"/>
-      <path d="M435 126 l7 7 13 -15" fill="none" stroke="#2E7D74" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-      <text x="351" y="184" font-size="22" font-weight="700" fill="#18383E">Check the source</text>
-      <text x="351" y="216" font-size="16" fill="#4B6268">Evidence must match the</text>
-      <text x="351" y="240" font-size="16" fill="#4B6268">exact submitted wording.</text>
+  <g font-family="Arial, Helvetica, sans-serif">
+    <rect x="48" y="118" width="280" height="220" rx="22" fill="#ffffff" stroke="#d8dfdc" stroke-width="2"/>
+    <circle cx="88" cy="162" r="22" fill="#e8f3ef"/><text x="88" y="169" text-anchor="middle" font-size="18" font-weight="700" fill="#176b5b">1</text>
+    <text x="78" y="220" font-size="22" font-weight="700" fill="#193331">Receive the report</text>
+    <text x="78" y="252" font-size="15" fill="#526562">Unfamiliar wording arrives</text>
+    <text x="78" y="276" font-size="15" fill="#526562">before the appointment.</text>
+    <text x="78" y="308" font-size="13" fill="#176b5b" font-weight="700">Need: clarity, not answers</text>
 
-      <path d="M579 180 H607" stroke="#2E7D74" stroke-width="3" marker-end="url(#arrow)"/>
-      <rect x="621" y="78" width="246" height="205" rx="20" fill="#FFFFFF" stroke="#D9E3DF" stroke-width="2"/>
-      <circle cx="656" cy="117" r="21" fill="#E3F0EC"/><text x="656" y="124" text-anchor="middle" font-size="20" font-weight="700" fill="#2E7D74">3</text>
-      <path d="M718 101 q-20 18 0 36 M744 101 q20 18 0 36 M725 111 h12 M725 123 h12 M725 135 h12" fill="none" stroke="#2E7D74" stroke-width="3" stroke-linecap="round"/>
-      <text x="644" y="184" font-size="22" font-weight="700" fill="#18383E">See exact quotes</text>
-      <text x="644" y="216" font-size="16" fill="#4B6268">Keyboard-accessible</text>
-      <text x="644" y="240" font-size="16" fill="#4B6268">panels show cited text.</text>
+    <path d="M340 228 H372" stroke="#176b5b" stroke-width="3" marker-end="url(#arr)"/>
 
-      <path d="M872 180 H900" stroke="#2E7D74" stroke-width="3" marker-end="url(#arrow)"/>
-      <rect x="914" y="78" width="246" height="205" rx="20" fill="#FFFFFF" stroke="#D9E3DF" stroke-width="2"/>
-      <circle cx="949" cy="117" r="21" fill="#E3F0EC"/><text x="949" y="124" text-anchor="middle" font-size="20" font-weight="700" fill="#2E7D74">4</text>
-      <path d="M1008 104 h47 a9 9 0 0 1 9 9 v25 a9 9 0 0 1-9 9 h-27 l-14 12 v-12 h-6 a9 9 0 0 1-9-9 v-25 a9 9 0 0 1 9-9z" fill="none" stroke="#2E7D74" stroke-width="3"/>
-      <text x="937" y="184" font-size="22" font-weight="700" fill="#18383E">Ask your team</text>
-      <text x="937" y="216" font-size="16" fill="#4B6268">Neutral prompts support</text>
-      <text x="937" y="240" font-size="16" fill="#4B6268">a clinician conversation.</text>
-    </g>
-    <rect x="35" y="305" width="1125" height="36" rx="18" fill="#E3F0EC"/>
-    <text x="597" y="329" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="700" letter-spacing="1" fill="#18383E">SOURCE WORDING  →  CHECKED EVIDENCE  →  NEUTRAL DISCUSSION</text>
-    </svg>
+    <rect x="386" y="118" width="280" height="220" rx="22" fill="#ffffff" stroke="#d8dfdc" stroke-width="2"/>
+    <circle cx="426" cy="162" r="22" fill="#e8f3ef"/><text x="426" y="169" text-anchor="middle" font-size="18" font-weight="700" fill="#176b5b">2</text>
+    <text x="416" y="220" font-size="22" font-weight="700" fill="#193331">Paste an excerpt</text>
+    <text x="416" y="252" font-size="15" fill="#526562">Synthetic or de-identified</text>
+    <text x="416" y="276" font-size="15" fill="#526562">text only  |  English only.</text>
+    <text x="416" y="308" font-size="13" fill="#176b5b" font-weight="700">Explicit acknowledgements</text>
+
+    <path d="M678 228 H710" stroke="#176b5b" stroke-width="3" marker-end="url(#arr)"/>
+
+    <rect x="724" y="118" width="280" height="220" rx="22" fill="#ffffff" stroke="#d8dfdc" stroke-width="2"/>
+    <circle cx="764" cy="162" r="22" fill="#e8f3ef"/><text x="764" y="169" text-anchor="middle" font-size="18" font-weight="700" fill="#176b5b">3</text>
+    <text x="754" y="220" font-size="22" font-weight="700" fill="#193331">See source-linked</text>
+    <text x="754" y="248" font-size="22" font-weight="700" fill="#193331">wording</text>
+    <text x="754" y="284" font-size="15" fill="#526562">Exact quotes  |  missing fields</text>
+    <text x="754" y="308" font-size="15" fill="#526562">stay "not stated."</text>
+
+    <path d="M1016 228 H1048" stroke="#176b5b" stroke-width="3" marker-end="url(#arr)"/>
+
+    <rect x="1062" y="118" width="290" height="220" rx="22" fill="#176b5b"/>
+    <circle cx="1104" cy="162" r="22" fill="rgba(255,255,255,0.18)"/><text x="1104" y="169" text-anchor="middle" font-size="18" font-weight="700" fill="#ffffff">4</text>
+    <text x="1094" y="220" font-size="22" font-weight="700" fill="#ffffff">Ask better questions</text>
+    <text x="1094" y="252" font-size="15" fill="#d7ebe5">Neutral prompts for the</text>
+    <text x="1094" y="276" font-size="15" fill="#d7ebe5">care team conversation.</text>
+    <text x="1094" y="308" font-size="13" fill="#ffffff" font-weight="700">Agency stays with the clinician</text>
+  </g>
+
+  <rect x="48" y="360" width="1304" height="36" rx="18" fill="#e8f3ef"/>
+  <text x="700" y="384" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700" letter-spacing="1.2" fill="#193331">PREPARE FOR THE APPOINTMENT   |   DO NOT REPLACE THE CARE TEAM</text>
+</svg>

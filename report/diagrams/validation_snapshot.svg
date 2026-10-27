@@ -1,26 +1,27 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="300" viewBox="0 0 1200 300">
-    <rect width="1200" height="300" rx="28" fill="#F6F8F5"/>
-    <text x="38" y="42" font-family="Arial,sans-serif" font-size="17" font-weight="700" letter-spacing="2" fill="#2E7D74">WHAT HAS BEEN VERIFIED</text>
-    <g font-family="Arial,sans-serif" text-anchor="middle">
-      <rect x="35" y="72" width="260" height="165" rx="20" fill="#FFFFFF" stroke="#D9E3DF" stroke-width="2"/>
-      <text x="165" y="142" font-size="54" font-weight="700" fill="#2E7D74">8</text>
-      <text x="165" y="178" font-size="17" font-weight="700" fill="#18383E">fictional reports</text>
-      <text x="165" y="207" font-size="13" fill="#71848A">synthetic corpus v1.0.0</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="360" viewBox="0 0 1400 360">
+  <rect width="1400" height="360" rx="32" fill="#f7f6f1"/>
+  <text x="48" y="48" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700" letter-spacing="2.5" fill="#176b5b">VERIFICATION SNAPSHOT</text>
+  <text x="48" y="82" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="700" fill="#193331">Software checks completed  -  clinical claims not made</text>
+  <g font-family="Arial, Helvetica, sans-serif" text-anchor="middle">
+    <rect x="48" y="120" width="300" height="150" rx="20" fill="#ffffff" stroke="#d8dfdc" stroke-width="2"/>
+    <text x="198" y="188" font-size="48" font-weight="700" fill="#176b5b">8</text>
+    <text x="198" y="224" font-size="16" font-weight="700" fill="#193331">fictional reports</text>
+    <text x="198" y="248" font-size="12" fill="#526562">synthetic corpus</text>
 
-      <rect x="320" y="72" width="260" height="165" rx="20" fill="#FFFFFF" stroke="#D9E3DF" stroke-width="2"/>
-      <text x="450" y="142" font-size="54" font-weight="700" fill="#2E7D74">46</text>
-      <text x="450" y="178" font-size="17" font-weight="700" fill="#18383E">expected field labels</text>
-      <text x="450" y="207" font-size="13" fill="#71848A">hand-authored answer keys</text>
+    <rect x="380" y="120" width="300" height="150" rx="20" fill="#ffffff" stroke="#d8dfdc" stroke-width="2"/>
+    <text x="530" y="188" font-size="48" font-weight="700" fill="#176b5b">46</text>
+    <text x="530" y="224" font-size="16" font-weight="700" fill="#193331">expected field labels</text>
+    <text x="530" y="248" font-size="12" fill="#526562">authored answer keys</text>
 
-      <rect x="605" y="72" width="260" height="165" rx="20" fill="#FFFFFF" stroke="#D9E3DF" stroke-width="2"/>
-      <text x="735" y="142" font-size="48" font-weight="700" fill="#2E7D74">34 / 34</text>
-      <text x="735" y="178" font-size="17" font-weight="700" fill="#18383E">gold span matches</text>
-      <text x="735" y="207" font-size="13" fill="#71848A">fixture integrity only</text>
+    <rect x="712" y="120" width="300" height="150" rx="20" fill="#ffffff" stroke="#d8dfdc" stroke-width="2"/>
+    <text x="862" y="188" font-size="42" font-weight="700" fill="#176b5b">34 / 34</text>
+    <text x="862" y="224" font-size="16" font-weight="700" fill="#193331">gold span matches</text>
+    <text x="862" y="248" font-size="12" fill="#526562">fixture integrity only</text>
 
-      <rect x="890" y="72" width="275" height="165" rx="20" fill="#FFFFFF" stroke="#D9E3DF" stroke-width="2"/>
-      <text x="1027" y="142" font-size="48" font-weight="700" fill="#2E7D74">64 + 10</text>
-      <text x="1027" y="178" font-size="17" font-weight="700" fill="#18383E">backend + browser tests</text>
-      <text x="1027" y="207" font-size="13" fill="#71848A">software behavior, not outcomes</text>
-    </g>
-    <text x="600" y="276" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="700" fill="#BE6B58">NO LIVE MODEL RUN  •  NO CLINICAL VALIDATION  •  NO PATIENT OUTCOME CLAIM</text>
-    </svg>
+    <rect x="1044" y="120" width="308" height="150" rx="20" fill="#ffffff" stroke="#d8dfdc" stroke-width="2"/>
+    <text x="1198" y="188" font-size="40" font-weight="700" fill="#176b5b">64 + 10</text>
+    <text x="1198" y="224" font-size="16" font-weight="700" fill="#193331">backend + browser tests</text>
+    <text x="1198" y="248" font-size="12" fill="#526562">behavior, not outcomes</text>
+  </g>
+  <text x="700" y="320" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700" fill="#b45b13">NO LIVE MODEL RUN   |   NO CLINICAL VALIDATION   |   NO PATIENT OUTCOME CLAIM</text>
+</svg>

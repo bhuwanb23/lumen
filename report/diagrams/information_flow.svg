@@ -1,39 +1,50 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="430" viewBox="0 0 1200 430">
-    <defs><marker id="arrow2" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#2E7D74"/></marker></defs>
-    <rect width="1200" height="430" rx="28" fill="#F6F8F5"/>
-    <text x="42" y="42" font-family="Arial,sans-serif" font-size="17" font-weight="700" letter-spacing="2" fill="#2E7D74">HIGH-LEVEL INFORMATION FLOW</text>
-    <text x="1158" y="42" text-anchor="end" font-family="Arial,sans-serif" font-size="13" fill="#71848A">A design view, not a deployment certification</text>
-    <g font-family="Arial,sans-serif">
-      <rect x="35" y="80" width="245" height="168" rx="18" fill="#FFFFFF" stroke="#D9E3DF" stroke-width="2"/>
-      <circle cx="69" cy="112" r="18" fill="#E3F0EC"/><text x="69" y="118" text-anchor="middle" font-size="17" font-weight="700" fill="#2E7D74">1</text>
-      <text x="59" y="158" font-size="21" font-weight="700" fill="#18383E">Person + excerpt</text>
-      <text x="59" y="188" font-size="17" fill="#4B6268">Synthetic/de-identified</text>
-      <text x="59" y="210" font-size="17" fill="#4B6268">text; explicit notices.</text>
-      <path d="M286 163 H311" stroke="#2E7D74" stroke-width="3" marker-end="url(#arrow2)"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="520" viewBox="0 0 1400 520">
+  <defs>
+    <marker id="flow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#176b5b"/></marker>
+    <linearGradient id="ibg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f7f6f1"/><stop offset="100%" stop-color="#eef4f1"/>
+    </linearGradient>
+  </defs>
+  <rect width="1400" height="520" rx="32" fill="url(#ibg)"/>
+  <text x="48" y="48" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700" letter-spacing="2.5" fill="#176b5b">SIMPLE FLOW</text>
+  <text x="48" y="82" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700" fill="#193331">How information moves  -  in everyday language</text>
+  <text x="1352" y="58" text-anchor="end" font-family="Arial, Helvetica, sans-serif" font-size="13" fill="#526562">A design overview, not a deployment certificate</text>
 
-      <rect x="325" y="80" width="245" height="168" rx="18" fill="#FFFFFF" stroke="#D9E3DF" stroke-width="2"/>
-      <circle cx="359" cy="112" r="18" fill="#E3F0EC"/><text x="359" y="118" text-anchor="middle" font-size="17" font-weight="700" fill="#2E7D74">2</text>
-      <text x="349" y="158" font-size="21" font-weight="700" fill="#18383E">Protected route</text>
-      <text x="349" y="188" font-size="17" fill="#4B6268">Same-origin, bounded,</text>
-      <text x="349" y="210" font-size="17" fill="#4B6268">no-store forwarding.</text>
-      <path d="M576 163 H601" stroke="#2E7D74" stroke-width="3" marker-end="url(#arrow2)"/>
+  <g font-family="Arial, Helvetica, sans-serif">
+    <rect x="48" y="130" width="280" height="200" rx="22" fill="#ffffff" stroke="#d8dfdc" stroke-width="2"/>
+    <circle cx="88" cy="174" r="20" fill="#e8f3ef"/><text x="88" y="181" text-anchor="middle" font-size="16" font-weight="700" fill="#176b5b">1</text>
+    <text x="78" y="230" font-size="22" font-weight="700" fill="#193331">Person + excerpt</text>
+    <text x="78" y="264" font-size="15" fill="#526562">Synthetic or de-identified</text>
+    <text x="78" y="288" font-size="15" fill="#526562">text, with clear notices.</text>
 
-      <rect x="615" y="80" width="245" height="168" rx="18" fill="#FFFFFF" stroke="#D9E3DF" stroke-width="2"/>
-      <circle cx="649" cy="112" r="18" fill="#E3F0EC"/><text x="649" y="118" text-anchor="middle" font-size="17" font-weight="700" fill="#2E7D74">3</text>
-      <text x="639" y="158" font-size="21" font-weight="700" fill="#18383E">Evidence + safety</text>
-      <text x="639" y="188" font-size="17" fill="#4B6268">Exact spans, separate</text>
-      <text x="639" y="210" font-size="17" fill="#4B6268">verification, refusals.</text>
-      <path d="M866 163 H891" stroke="#2E7D74" stroke-width="3" marker-end="url(#arrow2)"/>
+    <path d="M340 230 H372" stroke="#176b5b" stroke-width="3" marker-end="url(#flow)"/>
 
-      <rect x="905" y="80" width="260" height="168" rx="18" fill="#FFFFFF" stroke="#D9E3DF" stroke-width="2"/>
-      <circle cx="939" cy="112" r="18" fill="#E3F0EC"/><text x="939" y="118" text-anchor="middle" font-size="17" font-weight="700" fill="#2E7D74">4</text>
-      <text x="929" y="158" font-size="21" font-weight="700" fill="#18383E">Result or abstention</text>
-      <text x="929" y="188" font-size="17" fill="#4B6268">Exact quote panel, no-claim,</text>
-      <text x="929" y="210" font-size="17" fill="#4B6268">refusal, or safe error.</text>
+    <rect x="386" y="130" width="280" height="200" rx="22" fill="#ffffff" stroke="#d8dfdc" stroke-width="2"/>
+    <circle cx="426" cy="174" r="20" fill="#e8f3ef"/><text x="426" y="181" text-anchor="middle" font-size="16" font-weight="700" fill="#176b5b">2</text>
+    <text x="416" y="230" font-size="22" font-weight="700" fill="#193331">Careful handoff</text>
+    <text x="416" y="264" font-size="15" fill="#526562">Same-origin service path;</text>
+    <text x="416" y="288" font-size="15" fill="#526562">bounded, no lasting storage.</text>
 
-      <rect x="35" y="278" width="1130" height="112" rx="18" fill="#FFF5E3" stroke="#EBD7AD" stroke-width="2"/>
-      <circle cx="75" cy="334" r="23" fill="#DDAA58"/><path d="M75 320 v18 M75 346 v2" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round"/>
-      <text x="115" y="318" font-size="20" font-weight="700" fill="#18383E">Current demo: model provider disabled</text>
-      <text x="115" y="347" font-size="15" fill="#4B6268">The live path returns a generic unavailable response and no claims. The positive result screen is a synthetic UI test fixture.</text>
-      <text x="115" y="372" font-size="15" fill="#4B6268">If a provider is enabled later, submitted text may leave the device; provider retention/region terms require separate review.</text>
-    </g></svg>
+    <path d="M678 230 H710" stroke="#176b5b" stroke-width="3" marker-end="url(#flow)"/>
+
+    <rect x="724" y="130" width="280" height="200" rx="22" fill="#ffffff" stroke="#d8dfdc" stroke-width="2"/>
+    <circle cx="764" cy="174" r="20" fill="#e8f3ef"/><text x="764" y="181" text-anchor="middle" font-size="16" font-weight="700" fill="#176b5b">3</text>
+    <text x="754" y="230" font-size="22" font-weight="700" fill="#193331">Checks &amp; limits</text>
+    <text x="754" y="264" font-size="15" fill="#526562">Exact quotes, verification,</text>
+    <text x="754" y="288" font-size="15" fill="#526562">and fixed refusals.</text>
+
+    <path d="M1016 230 H1048" stroke="#176b5b" stroke-width="3" marker-end="url(#flow)"/>
+
+    <rect x="1062" y="130" width="290" height="200" rx="22" fill="#ffffff" stroke="#d8dfdc" stroke-width="2"/>
+    <circle cx="1102" cy="174" r="20" fill="#e8f3ef"/><text x="1102" y="181" text-anchor="middle" font-size="16" font-weight="700" fill="#176b5b">4</text>
+    <text x="1092" y="230" font-size="22" font-weight="700" fill="#193331">Result or silence</text>
+    <text x="1092" y="264" font-size="15" fill="#526562">Quote panel, no-claim,</text>
+    <text x="1092" y="288" font-size="15" fill="#526562">refusal, or safe error.</text>
+
+    <rect x="48" y="370" width="1304" height="100" rx="22" fill="#fff8eb" stroke="#f0d7b8" stroke-width="2"/>
+    <circle cx="98" cy="420" r="24" fill="#b45b13"/>
+    <text x="98" y="427" text-anchor="middle" font-size="18" font-weight="700" fill="#ffffff">!</text>
+    <text x="140" y="408" font-size="20" font-weight="700" fill="#193331">Current demonstration posture</text>
+    <text x="140" y="440" font-size="15" fill="#526562">The model provider is disabled by default. The live path returns a calm unavailable message with no claims. Any polished result screen shown in demos is a labeled synthetic UI fixture  -  not live model output.</text>
+  </g>
+</svg>

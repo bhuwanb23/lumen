@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="460" viewBox="0 0 1400 460">
+  <defs>
+    <linearGradient id="abg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f7f6f1"/><stop offset="100%" stop-color="#f3efe8"/>
+    </linearGradient>
+  </defs>
+  <rect width="1400" height="460" rx="32" fill="url(#abg)"/>
+  <text x="48" y="48" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700" letter-spacing="2.5" fill="#176b5b">WHY THIS MATTERS</text>
+  <text x="48" y="86" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700" fill="#193331">Before the appointment, understanding starts with the words on the page</text>
+
+  <g font-family="Arial, Helvetica, sans-serif">
+    <rect x="48" y="140" width="400" height="260" rx="24" fill="#ffffff" stroke="#d8dfdc" stroke-width="2"/>
+    <text x="78" y="190" font-size="15" font-weight="700" letter-spacing="1.5" fill="#526562">THE MOMENT</text>
+    <text x="78" y="234" font-size="24" font-weight="700" fill="#193331">A report arrives early</text>
+    <text x="78" y="276" font-size="16" fill="#526562">Portals and paper can surface</text>
+    <text x="78" y="302" font-size="16" fill="#526562">technical wording before anyone</text>
+    <text x="78" y="328" font-size="16" fill="#526562">has had time to explain it.</text>
+    <text x="78" y="366" font-size="15" font-weight="700" fill="#176b5b">Confusion is understandable</text>
+
+    <rect x="484" y="140" width="400" height="260" rx="24" fill="#ffffff" stroke="#d8dfdc" stroke-width="2"/>
+    <text x="514" y="190" font-size="15" font-weight="700" letter-spacing="1.5" fill="#526562">THE NEED</text>
+    <text x="514" y="234" font-size="24" font-weight="700" fill="#193331">Clarity without overreach</text>
+    <text x="514" y="276" font-size="16" fill="#526562">People want to know what the</text>
+    <text x="514" y="302" font-size="16" fill="#526562">document says, where each idea</text>
+    <text x="514" y="328" font-size="16" fill="#526562">came from, and what to ask next.</text>
+    <text x="514" y="366" font-size="15" font-weight="700" fill="#176b5b">Not a second opinion engine</text>
+
+    <rect x="920" y="140" width="432" height="260" rx="24" fill="#176b5b"/>
+    <text x="950" y="190" font-size="15" font-weight="700" letter-spacing="1.5" fill="#d7ebe5">THE LUMEN PROMISE</text>
+    <text x="950" y="234" font-size="24" font-weight="700" fill="#ffffff">A cautious briefing</text>
+    <text x="950" y="276" font-size="16" fill="#d7ebe5">Source-linked wording,</text>
+    <text x="950" y="302" font-size="16" fill="#d7ebe5">honest gaps, and neutral</text>
+    <text x="950" y="328" font-size="16" fill="#d7ebe5">questions for the care team.</text>
+    <text x="950" y="366" font-size="15" font-weight="700" fill="#ffffff">Confirm meaning with a clinician</text>
+  </g>
+</svg>
