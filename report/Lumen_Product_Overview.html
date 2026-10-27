@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Lumen — Product Overview Report</title>
+  <style>
+    @page { size: A4; margin: 15mm 15mm 16mm; }
+    :root {
+      --ink: #193331;
+      --muted: #526562;
+      --paper: #f5f4ef;
+      --accent: #176b5b;
+      --amber: #b45b13;
+      --line: #d8dfdc;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: white;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 10.5pt;
+      line-height: 1.55;
+    }
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      page-break-after: always;
+      position: relative;
+      padding-bottom: 28px;
+    }
+    .page:last-child { page-break-after: auto; }
+    header.top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 12px;
+      margin-bottom: 18px;
+    }
+    .brand { font-size: 18pt; font-weight: 700; }
+    .doc-label { font-size: 9pt; color: var(--muted); text-align: right; }
+    .eyebrow {
+      color: var(--accent);
+      font-size: 8.5pt;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin: 0 0 6px;
+    }
+    h1 { font-size: 20pt; line-height: 1.2; margin: 0 0 10px; }
+    h2 {
+      font-size: 12.5pt;
+      margin: 18px 0 8px;
+      color: var(--accent);
+    }
+    h3 { font-size: 11pt; margin: 14px 0 6px; }
+    p { margin: 0 0 9px; }
+    .lede { font-size: 11.5pt; color: var(--muted); }
+    .cover {
+      background: linear-gradient(145deg, #f7f6f1, #eef4f1);
+      border-radius: 18px;
+      padding: 28px 28px 24px;
+      margin-bottom: 18px;
+      border: 1px solid var(--line);
+    }
+    .grid-2, .grid-3 {
+      display: grid;
+      gap: 12px;
+      margin: 12px 0 16px;
+    }
+    .grid-2 { grid-template-columns: 1fr 1fr; }
+    .grid-3 { grid-template-columns: 1fr 1fr 1fr; }
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 12px 14px;
+      background: #fafaf7;
+    }
+    .card h3 { margin: 0 0 6px; font-size: 10.5pt; }
+    .card p, .card li { font-size: 9.5pt; color: var(--muted); margin: 0; }
+    .callout {
+      background: #fff8eb;
+      border: 1px solid #f0d7b8;
+      border-radius: 12px;
+      padding: 11px 13px;
+      font-size: 9.5pt;
+      margin: 12px 0;
+    }
+    .callout strong { color: var(--amber); }
+    .emerald {
+      background: #e8f3ef;
+      border: 1px solid #cfe3dc;
+      border-radius: 12px;
+      padding: 11px 13px;
+      font-size: 9.5pt;
+      margin: 12px 0;
+    }
+    figure { margin: 12px 0 6px; }
+    figure img {
+      width: 100%;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+    }
+    figcaption {
+      font-size: 8pt;
+      color: var(--muted);
+      margin-top: 5px;
+    }
+    ul, ol { margin: 6px 0 10px; padding-left: 18px; }
+    li { margin-bottom: 4px; }
+    .footer {
+      position: absolute;
+      left: 0; right: 0; bottom: 0;
+      border-top: 1px solid var(--line);
+      padding-top: 8px;
+      font-size: 8pt;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+    }
+    .quote {
+      font-size: 13pt;
+      font-weight: 700;
+      line-height: 1.35;
+      margin: 14px 0;
+      padding-left: 14px;
+      border-left: 4px solid var(--accent);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 10px 0 14px;
+      font-size: 9.5pt;
+    }
+    th, td {
+      border: 1px solid var(--line);
+      padding: 8px 10px;
+      text-align: left;
+      vertical-align: top;
+    }
+    th { background: #e8f3ef; color: var(--ink); }
+  </style>
+</head>
+<body>
+  <!-- PAGE 1 COVER -->
+  <section class="page">
+    <header class="top">
+      <div class="brand">◉ Lumen</div>
+      <div class="doc-label">
+        <div><strong>Product Overview Report</strong></div>
+        <div>27 October 2026</div>
+      </div>
+    </header>
+
+    <div class="cover">
+      <p class="eyebrow">Stakeholder report</p>
+      <h1>Lumen: helping people prepare for clearer care-team conversations</h1>
+      <p class="lede">A cautious, source-grounded prototype for explaining cancer pathology-report wording — designed to show where every statement came from, keep quiet when evidence is missing, and never pretend to be a clinician.</p>
+      <p style="margin-top:14px;font-size:9.5pt;color:var(--muted);"><strong>Audience:</strong> product, clinical advisors, partners, and demo reviewers · <strong>Tone:</strong> disclosure-first · <strong>Scope:</strong> English, text-only, synthetic prototype</p>
+    </div>
+
+    <div class="grid-3">
+      <div class="card">
+        <h3>Purpose</h3>
+        <p>Turn unfamiliar report wording into a careful briefing and neutral questions for the appointment.</p>
+      </div>
+      <div class="card">
+        <h3>Stance</h3>
+        <p>Evidence before eloquence. An untraceable answer is a failure. Absence is not a negative result.</p>
+      </div>
+      <div class="card">
+        <h3>Status</h3>
+        <p>Software prototype with automated checks. Not clinically validated. Not for patient use.</p>
+      </div>
+    </div>
+
+    <figure>
+      <img src="diagrams/patient_journey.png" alt="Intended patient journey from report to questions" />
+      <figcaption>Figure 1. Intended experience: excerpt → evidence checks → exact quotes → care-team questions.</figcaption>
+    </figure>
+
+    <div class="callout">
+      <strong>Non-negotiable disclosure:</strong> Lumen is a synthetic-only, English-only software prototype — not medical advice, not a diagnostic product, and not clinically validated. Confirm every meaning with a care team.
+    </div>
+
+    <div class="footer"><span>Lumen Product Overview · 1 / 5</span><span>Prepared for high-level briefing</span></div>
+  </section>
+
+  <!-- PAGE 2 PROBLEM & VALUE -->
+  <section class="page">
+    <header class="top">
+      <div class="brand">◉ Lumen</div>
+      <div class="doc-label">Problem &amp; value</div>
+    </header>
+
+    <h2>The human problem</h2>
+    <p>People may see pathology wording through portals or on paper before a clinician has explained it. Reports use specialist language. Access alone does not create understanding. The result can be confusion, unnecessary worry, or a quieter appointment than the person hoped for.</p>
+
+    <div class="quote">“Help me understand what this document says, show me where each explanation came from, and help me ask useful questions — without telling me what my diagnosis or treatment should be.”</div>
+
+    <figure>
+      <img src="diagrams/appointment_value.png" alt="Moment, need, and Lumen promise" />
+      <figcaption>Figure 2. From early report access to a carefully bounded briefing.</figcaption>
+    </figure>
+
+    <h2>Who Lumen is for</h2>
+    <div class="grid-2">
+      <div class="card">
+        <h3>Intended</h3>
+        <p>Adults preparing for a care-team appointment after a cancer-related report; caregivers supporting with consent; people who need clearer wording and better questions.</p>
+      </div>
+      <div class="card">
+        <h3>Not intended</h3>
+        <p>Children, emergency care, clinical decision-making, unsupervised treatment interpretation, or any use of identifiable patient information in this prototype.</p>
+      </div>
+    </div>
+
+    <h2>What “good” looks like</h2>
+    <ul>
+      <li>A person can inspect exact source wording for each shown statement.</li>
+      <li>Missing facts remain visibly “not stated,” not silently filled in.</li>
+      <li>Out-of-scope requests receive clear, fixed refusals.</li>
+      <li>The appointment still belongs to the clinician — Lumen only helps prepare.</li>
+    </ul>
+
+    <div class="footer"><span>Lumen Product Overview · 2 / 5</span><span>Patient agency, not replacement</span></div>
+  </section>
+
+  <!-- PAGE 3 PRINCIPLES & SCOPE -->
+  <section class="page">
+    <header class="top">
+      <div class="brand">◉ Lumen</div>
+      <div class="doc-label">Principles &amp; boundaries</div>
+    </header>
+
+    <h2>Design principles</h2>
+    <figure>
+      <img src="diagrams/principles_infographic.png" alt="Four design principles" />
+      <figcaption>Figure 3. Four commitments that govern product behavior.</figcaption>
+    </figure>
+
+    <h2>Scope safety is a feature</h2>
+    <p>Lumen’s value is as much about what it refuses as what it explains. The product stays useful by staying narrow.</p>
+
+    <figure>
+      <img src="diagrams/scope_boundary.png" alt="Inside and outside product boundary" />
+      <figcaption>Figure 4. Inside the boundary versus outside the boundary.</figcaption>
+    </figure>
+
+    <div class="emerald">
+      <strong>Operating language:</strong> Lumen explains report wording; it is not medical advice. It does not diagnose, predict outcomes, or recommend treatment. Confirm meaning with your care team.
+    </div>
+
+    <div class="footer"><span>Lumen Product Overview · 3 / 5</span><span>Scope safety is a feature</span></div>
+  </section>
+
+  <!-- PAGE 4 HOW IT WORKS -->
+  <section class="page">
+    <header class="top">
+      <div class="brand">◉ Lumen</div>
+      <div class="doc-label">How it works</div>
+    </header>
+
+    <h2>A simple information journey</h2>
+    <p>In everyday terms: a person submits an excerpt with explicit acknowledgements; the service applies evidence and safety checks; the interface either shows source-linked wording and questions, or withholds claims and explains why.</p>
+
+    <figure>
+      <img src="diagrams/information_flow.png" alt="High-level information flow" />
+      <figcaption>Figure 5. High-level flow with the current demo disclosure.</figcaption>
+    </figure>
+
+    <h2>The evidence gate</h2>
+    <p>Every statement that appears must earn its place. Exact source wording, verification, and safety limits decide whether content is shown, withheld, or refused.</p>
+
+    <figure>
+      <img src="diagrams/evidence_gate.png" alt="Evidence gate" />
+      <figcaption>Figure 6. Supported path versus withheld or refused outcomes.</figcaption>
+    </figure>
+
+    <table>
+      <thead>
+        <tr>
+          <th>If this happens…</th>
+          <th>Lumen’s response</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Wording is present and supported</td>
+          <td>Show a plain-language statement with an exact quote control</td>
+        </tr>
+        <tr>
+          <td>A field is missing from the excerpt</td>
+          <td>Mark it “not stated” — do not invent a value</td>
+        </tr>
+        <tr>
+          <td>Request asks for prognosis or treatment advice</td>
+          <td>Return a fixed refusal and point back to the care team</td>
+        </tr>
+        <tr>
+          <td>Evidence cannot be verified</td>
+          <td>Fail closed: no unsupported claims are displayed</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="footer"><span>Lumen Product Overview · 4 / 5</span><span>Evidence before eloquence</span></div>
+  </section>
+
+  <!-- PAGE 5 TRUST & NEXT -->
+  <section class="page">
+    <header class="top">
+      <div class="brand">◉ Lumen</div>
+      <div class="doc-label">Trust, status &amp; next steps</div>
+    </header>
+
+    <h2>What has been verified — carefully phrased</h2>
+    <p>The figures below describe software discipline and fixture integrity. They are not model accuracy scores and not clinical outcome results.</p>
+
+    <figure>
+      <img src="diagrams/trust_snapshot.png" alt="Honest verification snapshot" />
+      <figcaption>Figure 7. Honest status snapshot for stakeholder review.</figcaption>
+    </figure>
+
+    <div class="grid-2">
+      <div class="card">
+        <h3>Present strengths</h3>
+        <p>Clear product boundary; source-linked design; fixed refusals; fail-closed posture; synthetic demo discipline; automated regression coverage for key behaviors.</p>
+      </div>
+      <div class="card">
+        <h3>Not yet claimed</h3>
+        <p>Live model quality; clinician-labeled evaluation; patient-outcome benefit; multi-language support; PDF/image intake; deployment privacy certification.</p>
+      </div>
+    </div>
+
+    <h2>Recommended next steps</h2>
+    <ol>
+      <li>Independent clinician and patient review of task framing, safety language, and examples.</li>
+      <li>Human-labeled evaluation protocol before any accuracy narrative is used externally.</li>
+      <li>Privacy, security, accessibility, and deployment review if a controlled pilot is ever considered.</li>
+      <li>Keep every public demo disclosure-first: synthetic data, provider status, and “not medical advice.”</li>
+    </ol>
+
+    <div class="callout">
+      <strong>Closing line for stakeholders:</strong> Lumen aims to make pathology wording discussable — not decidable. The care team remains the authority. Until clinical validation exists, treat Lumen as a carefully bounded software prototype only.
+    </div>
+
+    <div class="emerald">
+      <strong>Contact posture for demos:</strong> Use synthetic excerpts only. Label fixture screens as synthetic UI demos. Do not present disabled-provider failures as successful model answers.
+    </div>
+
+    <div class="footer"><span>Lumen Product Overview · 5 / 5</span><span>Confirm meaning with your care team</span></div>
+  </section>
+</body>
+</html>

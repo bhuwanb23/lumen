@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Lumen — One-Pager</title>
+  <style>
+    @page { size: A4; margin: 12mm; }
+    :root { --ink:#193331; --muted:#526562; --accent:#176b5b; --amber:#b45b13; --line:#d8dfdc; }
+    * { box-sizing: border-box; }
+    body { margin:0; font-family: Arial, Helvetica, sans-serif; color: var(--ink); font-size: 10pt; line-height: 1.5; }
+    .sheet { width: 210mm; min-height: 297mm; }
+    header { display:flex; justify-content:space-between; align-items:flex-start; border-bottom:2px solid var(--accent); padding-bottom:10px; margin-bottom:14px; }
+    .brand { font-size: 20pt; font-weight:700; }
+    .pill { display:inline-block; border:1px solid rgba(23,107,91,.25); border-radius:999px; padding:3px 10px; font-size:8pt; color:var(--muted); margin-top:6px; }
+    h1 { font-size:16pt; margin:0 0 8px; line-height:1.25; }
+    h2 { font-size:11pt; color:var(--accent); margin:12px 0 6px; }
+    p { margin:0 0 8px; }
+    .grid { display:grid; grid-template-columns:1.15fr 0.85fr; gap:12px; }
+    .card { border:1px solid var(--line); border-radius:12px; padding:10px 12px; background:#fafaf7; }
+    .card h3 { margin:0 0 4px; font-size:10pt; }
+    .card p { margin:0; font-size:9pt; color:var(--muted); }
+    figure { margin:8px 0; }
+    figure img { width:100%; border-radius:10px; border:1px solid var(--line); }
+    figcaption { font-size:7.5pt; color:var(--muted); margin-top:3px; }
+    .callout { background:#fff8eb; border:1px solid #f0d7b8; border-radius:10px; padding:9px 11px; font-size:8.5pt; margin-top:10px; }
+    .callout strong { color: var(--amber); }
+    ul { margin:4px 0 0; padding-left:16px; }
+    li { margin-bottom:3px; font-size:9pt; }
+    .footer { margin-top:10px; border-top:1px solid var(--line); padding-top:6px; font-size:7.5pt; color:var(--muted); display:flex; justify-content:space-between; }
+  </style>
+</head>
+<body>
+  <div class="sheet">
+    <header>
+      <div>
+        <div class="brand">◉ Lumen</div>
+        <div class="pill">Prototype · English · text only</div>
+      </div>
+      <div style="text-align:right;font-size:8.5pt;color:var(--muted);">
+        <div><strong>One-pager</strong></div>
+        <div>27 October 2026</div>
+        <div>Leave-behind</div>
+      </div>
+    </header>
+
+    <h1>A clearer conversation starts with understanding the report.</h1>
+    <p style="color:var(--muted);">Lumen is a cautious, source-grounded prototype that explains cancer pathology-report wording and prepares neutral questions for a care team - without diagnosing, predicting outcomes, or recommending treatment.</p>
+
+    <div class="grid">
+      <div>
+        <figure>
+          <img src="diagrams/patient_journey.png" alt="Patient journey" />
+          <figcaption>Intended journey: excerpt to evidence-linked wording to better questions.</figcaption>
+        </figure>
+        <h2>What people get</h2>
+        <ul>
+          <li>Plain-language statements tied to exact report quotes</li>
+          <li>Missing fields marked “not stated,” never guessed</li>
+          <li>Neutral questions for the appointment</li>
+          <li>Clear refusals when a request goes beyond safe scope</li>
+        </ul>
+      </div>
+      <div>
+        <div class="card" style="margin-bottom:8px;">
+          <h3>For</h3>
+          <p>Adults and caregivers preparing for a care-team visit after a cancer-related report.</p>
+        </div>
+        <div class="card" style="margin-bottom:8px;">
+          <h3>Not for</h3>
+          <p>Diagnosis, prognosis, treatment advice, dosing, trial eligibility, urgent triage, or clinical decision-making.</p>
+        </div>
+        <div class="card" style="margin-bottom:8px;">
+          <h3>Guiding rule</h3>
+          <p>Evidence before eloquence. An untraceable answer is a failure.</p>
+        </div>
+        <figure>
+          <img src="diagrams/validation_snapshot.png" alt="Verification snapshot" />
+          <figcaption>Software/fixture checks only - not clinical validation.</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <div class="callout">
+      <strong>Disclosure:</strong> Synthetic-only prototype. Not medical advice. Not clinically validated. Not ready for patient use. Confirm every meaning with a clinician.
+    </div>
+
+    <div class="footer">
+      <span>◉ Lumen · One-pager</span>
+      <span>Prepare for the appointment · do not replace the care team</span>
+    </div>
+  </div>
+</body>
+</html>

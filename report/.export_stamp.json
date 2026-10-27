@@ -1,0 +1,18 @@
+{
+  "exported_at": "2026-10-27T15:22:46.992Z",
+  "svgs": [
+    "patient_journey.svg",
+    "scope_boundary.svg",
+    "evidence_gate.svg",
+    "principles_infographic.svg",
+    "information_flow.svg",
+    "trust_snapshot.svg",
+    "appointment_value.svg",
+    "validation_snapshot.svg"
+  ],
+  "pdfs": [
+    "Lumen_Executive_Brief.pdf",
+    "Lumen_Product_Overview.pdf",
+    "Lumen_One_Pager.pdf"
+  ]
+}
