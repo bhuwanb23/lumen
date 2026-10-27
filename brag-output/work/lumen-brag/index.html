@@ -82,7 +82,7 @@
         border: 1px solid rgba(6, 78, 59, 0.2);
         border-radius: 999px;
         padding: 8px 16px;
-        font-size: 15px;
+        font-size: 16px;
         color: var(--slate-700);
         background: rgba(255, 255, 255, 0.7);
       }
@@ -322,7 +322,7 @@
         position: absolute;
         right: 120px;
         bottom: 56px;
-        font-size: 13px;
+        font-size: 15px;
         letter-spacing: 0.04em;
         color: var(--slate-600);
         background: rgba(245, 244, 239, 0.92);
@@ -402,7 +402,7 @@
           <div style="flex:1;display:flex;flex-direction:column;justify-content:center;max-width:1280px;margin:0 auto;width:100%;">
             <p class="eyebrow" id="hook-eyebrow">Before your appointment</p>
             <h1 class="hero-title" id="hook-title">A clearer conversation starts with understanding the report.</h1>
-            <p class="hero-sub" id="hook-sub">Lumen is a source-grounded prototype for explaining cancer pathology-report wording and preparing neutral questions for a care team.</p>
+            <p class="hero-sub" id="hook-sub" data-hold>Lumen is a source-grounded prototype for explaining cancer pathology-report wording and preparing neutral questions for a care team.</p>
           </div>
         </div>
       </section>
@@ -430,7 +430,7 @@
             </div>
           </div>
         </div>
-        <div class="fixture-label">Synthetic demo excerpt</div>
+        <div class="fixture-label" data-layout-ignore>Synthetic demo excerpt</div>
       </section>
 
       <!-- SCENE 3: Verify 18–28 -->
@@ -462,7 +462,7 @@
             </div>
           </div>
         </div>
-        <div class="fixture-label">Synthetic prototype demo — not clinical output</div>
+        <div class="fixture-label" data-layout-ignore>Synthetic prototype demo — not clinical output</div>
       </section>
 
       <!-- SCENE 4: Source 28–40 -->
@@ -494,7 +494,7 @@
             </div>
           </div>
         </div>
-        <div class="fixture-label">Synthetic prototype demo — not clinical output</div>
+        <div class="fixture-label" data-layout-ignore>Synthetic prototype demo — not clinical output</div>
       </section>
 
       <!-- SCENE 5: Questions 40–48 -->
@@ -526,12 +526,10 @@
       <!-- SCENE 6: Safety 48–54 -->
       <section id="scene-safety" class="clip" data-start="47.9" data-duration="6.4" data-track-index="0">
         <div class="paper-glow"></div>
-        <div class="scene-inner" style="justify-content:center;">
-          <div class="ui-shell" style="flex:0;">
-            <div id="safety-block">
-              <div class="scope-tag">Scope safety is a feature</div>
-              <div class="refusal" id="refusal-panel">I can't estimate prognosis, survival, or recurrence from a report. Please ask your care team, who can interpret your full clinical context.</div>
-            </div>
+        <div class="scene-inner" style="justify-content:center;align-items:center;">
+          <div id="safety-block" style="max-width:1080px;width:100%;">
+            <div class="scope-tag">Scope safety is a feature</div>
+            <div class="refusal" id="refusal-panel">I can't estimate prognosis, survival, or recurrence from a report. Please ask your care team, who can interpret your full clinical context.</div>
           </div>
         </div>
       </section>
@@ -576,11 +574,11 @@
 
       const tl = gsap.timeline({ paused: true });
 
-      // --- Hook ---
-      tl.fromTo("#hook-brand", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" }, 0.15);
-      tl.fromTo("#hook-eyebrow", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.65, ease: "power3.out" }, 0.45);
-      tl.fromTo("#hook-title", { opacity: 0, y: 28 }, { opacity: 1, y: 0, duration: 0.9, ease: "power3.out" }, 0.75);
-      tl.fromTo("#hook-sub", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" }, 1.5);
+      // --- Hook (brand + title settled at frame 0 for poster/thumbnail) ---
+      gsap.set("#hook-brand, #hook-eyebrow, #hook-title", { opacity: 1, y: 0 });
+      gsap.set("#hook-sub", { opacity: 0, y: 18 });
+      tl.fromTo("#hook-sub", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" }, 1.35);
+      tl.to("#hook-title", { scale: 1.01, duration: 2.4, ease: "sine.inOut", yoyo: true, repeat: 1, transformOrigin: "left center" }, 2.2);
       tl.to("#hook-brand, #hook-eyebrow, #hook-title, #hook-sub", { opacity: 0, y: -12, duration: 0.45, ease: "power2.in", stagger: 0.04 }, 5.55);
 
       // --- Paste ---
@@ -594,6 +592,7 @@
         ease: "none",
         onUpdate: () => typeReport(typeProxy.p),
       }, 6.7);
+      tl.to("#report-caret", { opacity: 0, duration: 0.2 }, 12.0);
       tl.fromTo("#check-1-fill, #check-1-mark", { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power2.out" }, 13.2);
       tl.fromTo("#check-1", { scale: 0.85 }, { scale: 1, duration: 0.25, ease: "back.out(2)" }, 13.2);
       tl.fromTo("#check-2-fill, #check-2-mark", { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power2.out" }, 14.0);
@@ -611,6 +610,7 @@
       tl.fromTo("#verify-result", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" }, 20.85);
       tl.fromTo("#claim-1", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.55, ease: "power3.out" }, 21.2);
       tl.fromTo("#claim-2", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.55, ease: "power3.out" }, 21.7);
+      tl.to("#claim-1", { y: -4, duration: 2.2, ease: "sine.inOut", yoyo: true, repeat: 1 }, 23.0);
       tl.to("#verify-card", { opacity: 0, y: -16, duration: 0.4, ease: "power2.in" }, 27.4);
 
       // --- Source ---
@@ -620,16 +620,20 @@
       tl.fromTo("#source-quote", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.55, ease: "power3.out" }, 31.75);
       tl.to("#source-btn-view", { opacity: 0, duration: 0.15 }, 31.75);
       tl.to("#source-btn-hide", { opacity: 1, duration: 0.2 }, 31.8);
+      tl.fromTo("#source-claim-2", { opacity: 0.35 }, { opacity: 0.85, duration: 0.8, ease: "power2.out" }, 34.5);
+      tl.to("#source-quote", { scale: 1.01, duration: 2.0, ease: "sine.inOut", yoyo: true, repeat: 1, transformOrigin: "left center" }, 33.2);
       tl.to("#source-card", { opacity: 0, y: -16, duration: 0.4, ease: "power2.in" }, 39.4);
 
       // --- Questions ---
       tl.fromTo("#questions-card", { opacity: 0, y: 28 }, { opacity: 1, y: 0, duration: 0.65, ease: "power3.out" }, 40.05);
       tl.fromTo("#questions-panel", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.55, ease: "power3.out" }, 40.5);
       tl.fromTo("#fact-stage", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 41.2);
+      tl.to("#q1", { x: 4, duration: 1.8, ease: "sine.inOut", yoyo: true, repeat: 1 }, 42.5);
       tl.to("#questions-card", { opacity: 0, y: -16, duration: 0.4, ease: "power2.in" }, 47.4);
 
       // --- Safety ---
       tl.fromTo("#safety-block", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" }, 48.05);
+      tl.to("#refusal-panel", { scale: 1.015, duration: 1.6, ease: "sine.inOut", yoyo: true, repeat: 1, transformOrigin: "center center" }, 49.2);
       tl.to("#safety-block", { opacity: 0, y: -12, duration: 0.4, ease: "power2.in" }, 53.4);
 
       // --- Outro ---
