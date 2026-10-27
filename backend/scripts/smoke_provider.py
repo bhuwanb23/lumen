@@ -174,7 +174,7 @@ def main() -> None:
     parser.add_argument("--base-url", help="override OLLAMA_BASE_URL")
     parser.add_argument("--case", default=DEFAULT_CASE_ID, help="synthetic fixture case_id")
     parser.add_argument(
-        "--timeout", type=float, default=180.0, help="per-request timeout seconds (cold model load)"
+        "--timeout", type=float, default=600.0, help="per-request timeout seconds (cold model load)"
     )
     args = parser.parse_args()
     raise SystemExit(asyncio.run(run(args)))

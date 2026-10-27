@@ -82,6 +82,19 @@ def _payload_text(payload: dict[str, Any]) -> str:
     return json.dumps(payload, ensure_ascii=False, separators=(",", ":"))
 
 
+def _strip_length_limits(value: Any) -> Any:
+    """Drop `maxLength` constraints; Ollama's GBNF grammar converter rejects them."""
+    if isinstance(value, list):
+        return [_strip_length_limits(item) for item in value]
+    if isinstance(value, dict):
+        return {
+            key: _strip_length_limits(item)
+            for key, item in value.items()
+            if key != "maxLength"
+        }
+    return value
+
+
 class _HttpStructuredProvider:
     def __init__(
         self,
@@ -291,7 +304,8 @@ class OllamaProvider(_HttpStructuredProvider):
             payload={
                 "model": self.model,
                 "stream": False,
-                "format": inline_json_schema(output_model),
+                "think": False,
+                "format": _strip_length_limits(inline_json_schema(output_model)),
                 "options": {"temperature": 0},
                 "messages": [
                     {"role": "system", "content": system_prompt},
