@@ -1,7 +1,7 @@
 # 07 — Accessibility and localization
 
 ## Target
-Aim for WCAG 2.2 AA in the critical patient flow. Automated axe checks are necessary but not certification; pair them with manual keyboard, screen-reader and zoom checks.
+Aim for WCAG 2.2 AA in the critical patient flow. Automated axe checks are necessary but not certification; pair them with manual keyboard, screen-reader and zoom checks. The step-by-step manual verification (keyboard, zoom, contrast, screen reader, motion, touch) and its run log live in [manual_a11y_checklist.md](manual_a11y_checklist.md).
 
 ## UI requirements
 Semantic landmarks and heading order; labels/instructions; keyboard-only operation; visible focus; no traps; polite live announcements for loading/result/error; large readable text; contrast; reflow at 200–400%; no color-only meaning; clear action labels; mobile touch targets; reduced-motion respect; clear generic errors. Do not re-announce full report text.

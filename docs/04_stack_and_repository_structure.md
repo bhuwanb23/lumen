@@ -19,22 +19,43 @@
 | Gates | Ruff, mypy, ESLint, Playwright, pre-commit/detect-secrets | Engineering discipline, with each gate actually run in CI. |
 | CI/deploy | GitHub Actions; Docker Compose; Vercel + Cloud Run/Fly.io/Render | Reproducible local demo; inspect logs/retention and provider terms. |
 
-## Proposed tree (for future implementation)
+## Repository structure (current implementation)
 ```text
 lumen/
-├── README.md, .env.example, .gitignore, docker-compose.yml
+├── README.md, LICENSE (MIT), .env.example, .gitignore, docker-compose.yml
 ├── frontend/
-│   ├── app/ (routes/layout); app/api/analyze/route.ts (server proxy)
-│   ├── components/ (accessible UI); i18n/; lib/; public/ (manifest/icons)
-│   └── tests/e2e/ (Playwright)
+│   ├── app/ (page, layout, analyzer); app/api/{analyze,health}/route.ts (server proxy)
+│   ├── e2e/ (Playwright); scripts/
+│   ├── Dockerfile; package.json; playwright.config.ts; eslint.config.mjs
 ├── backend/
-│   ├── app/main.py; app/api/; app/core/; app/schemas/
-│   ├── app/services/{ingest,deidentify,extract,explain,verify,safety,
-│   │   translate,glossary,trials,prep_card}.py
-│   ├── tests/; pyproject.toml; Dockerfile
-├── eval/datasets/synthetic/; eval/redteam/; eval/run_eval.py; eval/results/
-├── docs/; plan/; .github/workflows/
+│   ├── app/
+│   │   ├── main.py            # FastAPI app, middleware (body limit, rate limit, CORS, headers)
+│   │   ├── config.py          # Settings (provider, retries, timeouts, rate limit)
+│   │   ├── pipeline.py        # 4-stage analyze_report orchestration
+│   │   ├── providers.py       # Anthropic / OpenRouter / Ollama adapters (+ disabled)
+│   │   ├── schemas.py         # Pydantic v2 contracts, drafts, responses
+│   │   ├── contracts_config.py# Contract version + model registry (exporter/test share it)
+│   │   ├── ratelimit.py       # Sliding-window ASGI rate limiter
+│   │   ├── safety.py          # Fixed refusals / scope classification
+│   │   └── questions.py       # Care-team question generation
+│   ├── contracts/             # 17 generated JSON Schema files + README
+│   ├── scripts/export_contracts.py
+│   ├── tests/                 # pytest suite (conftest.py, unit + API + dataset tests)
+│   ├── pyproject.toml; uv.lock; Dockerfile
+├── eval/
+│   ├── datasets/synthetic/    # reports.json + answer_keys.json (8 each)
+│   ├── redteam/cases.json     # 16 red-team cases (synthetic_only)
+│   ├── scripts/fixture_integrity.py
+│   ├── run_eval.py, scoring.py, run_redteam.py
+│   ├── results/               # generated reports (gitignored, kept via .gitkeep)
+│   └── clinical_review/       # reviewer packet + checklist
+├── docs/; plan/
+└── .github/workflows/ci.yml   # ruff, mypy, pytest, contracts, eval, e2e
 ```
+
+Notes:
+- `MODEL_PROVIDER=disabled` by default; rate limit (30 req/60 s default) applies to `POST /analyze`.
+- The original proposal in this document listed `app/api/`, `app/services/`, `app/core/`; the implementation consolidates these into the flat `app/` modules above.
 
 ## Integration spikes before commitment
 1. Confirm current NCI access mechanism, attribution/licence, caching permission, coverage and rate limits.
