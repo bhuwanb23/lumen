@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="300" viewBox="0 0 1200 300">
+    <rect width="1200" height="300" rx="28" fill="#F6F8F5"/>
+    <text x="38" y="42" font-family="Arial,sans-serif" font-size="17" font-weight="700" letter-spacing="2" fill="#2E7D74">WHAT HAS BEEN VERIFIED</text>
+    <g font-family="Arial,sans-serif" text-anchor="middle">
+      <rect x="35" y="72" width="260" height="165" rx="20" fill="#FFFFFF" stroke="#D9E3DF" stroke-width="2"/>
+      <text x="165" y="142" font-size="54" font-weight="700" fill="#2E7D74">8</text>
+      <text x="165" y="178" font-size="17" font-weight="700" fill="#18383E">fictional reports</text>
+      <text x="165" y="207" font-size="13" fill="#71848A">synthetic corpus v1.0.0</text>
+
+      <rect x="320" y="72" width="260" height="165" rx="20" fill="#FFFFFF" stroke="#D9E3DF" stroke-width="2"/>
+      <text x="450" y="142" font-size="54" font-weight="700" fill="#2E7D74">46</text>
+      <text x="450" y="178" font-size="17" font-weight="700" fill="#18383E">expected field labels</text>
+      <text x="450" y="207" font-size="13" fill="#71848A">hand-authored answer keys</text>
+
+      <rect x="605" y="72" width="260" height="165" rx="20" fill="#FFFFFF" stroke="#D9E3DF" stroke-width="2"/>
+      <text x="735" y="142" font-size="48" font-weight="700" fill="#2E7D74">34 / 34</text>
+      <text x="735" y="178" font-size="17" font-weight="700" fill="#18383E">gold span matches</text>
+      <text x="735" y="207" font-size="13" fill="#71848A">fixture integrity only</text>
+
+      <rect x="890" y="72" width="275" height="165" rx="20" fill="#FFFFFF" stroke="#D9E3DF" stroke-width="2"/>
+      <text x="1027" y="142" font-size="48" font-weight="700" fill="#2E7D74">64 + 10</text>
+      <text x="1027" y="178" font-size="17" font-weight="700" fill="#18383E">backend + browser tests</text>
+      <text x="1027" y="207" font-size="13" fill="#71848A">software behavior, not outcomes</text>
+    </g>
+    <text x="600" y="276" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="700" fill="#BE6B58">NO LIVE MODEL RUN  •  NO CLINICAL VALIDATION  •  NO PATIENT OUTCOME CLAIM</text>
+    </svg>
