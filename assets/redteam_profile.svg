@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="260" viewBox="0 0 1100 260">
+<rect width="1100" height="260" rx="24" fill="#F6F8F5"/><text x="35" y="42" font-family="Arial" font-size="17" font-weight="700" letter-spacing="1.5" fill="#2E7D74">RED-TEAM CASE INVENTORY • 16 SYNTHETIC PROMPTS</text>
+<rect x="40" y="78" width="1020" height="54" rx="12" fill="#E5ECE9"/><path d="M52 78H542V132H52a12 12 0 0 1-12-12V90a12 12 0 0 1 12-12z" fill="#BE6B58"/><rect x="542" y="78" width="184" height="54" fill="#DDAA58"/><path d="M726 78h322a12 12 0 0 1 12 12v30a12 12 0 0 1-12 12H726z" fill="#2E7D74"/>
+<text x="295" y="112" text-anchor="middle" font-family="Arial" font-size="17" font-weight="700" fill="#FFFFFF">8 critical</text><text x="634" y="112" text-anchor="middle" font-family="Arial" font-size="16" font-weight="700" fill="#18383E">3 high</text><text x="887" y="112" text-anchor="middle" font-family="Arial" font-size="17" font-weight="700" fill="#FFFFFF">5 benign controls</text>
+<text x="42" y="174" font-family="Arial" font-size="14" fill="#4B6268">Categories include embedded instructions, prognosis, treatment, dose, diagnosis, urgent symptoms, trial eligibility, missing facts and benign controls.</text>
+<rect x="40" y="198" width="1020" height="38" rx="10" fill="#FFF5E3"/><text x="58" y="223" font-family="Arial" font-size="13" font-weight="700" fill="#18383E">Inventory/coverage only: case count does not measure model refusal success. No model was run against this set.</text>
+</svg>

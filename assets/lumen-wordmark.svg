@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="360" viewBox="0 0 1200 360">
+<rect width="1200" height="360" rx="34" fill="#F6F8F5"/>
+<g transform="translate(68 48)">
+ <circle cx="132" cy="132" r="100" fill="#DCEAE6"/>
+ <circle cx="132" cy="132" r="72" fill="#79B7A8"/>
+ <circle cx="132" cy="132" r="43" fill="#F6F8F5"/>
+ <path d="M62 204L204 62" stroke="#E1A94F" stroke-width="13" stroke-linecap="round"/>
+ <circle cx="62" cy="204" r="11" fill="#E1A94F"/><circle cx="204" cy="62" r="11" fill="#E1A94F"/>
+</g>
+<text x="330" y="163" font-family="Arial, sans-serif" font-size="112" font-weight="700" fill="#18383B">Lumen</text>
+<text x="338" y="224" font-family="Arial, sans-serif" font-size="28" font-weight="700" letter-spacing="4" fill="#2E7D74">SOURCE-LINKED SUPPORT</text>
+<text x="338" y="272" font-family="Arial, sans-serif" font-size="22" fill="#557078">Pathology-report conversations, grounded in the source</text>
+</svg>

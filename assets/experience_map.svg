@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="430" viewBox="0 0 1200 430">
+<defs><marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0L10 5L0 10z" fill="#2E7D74"/></marker></defs>
+<rect width="1200" height="430" rx="28" fill="#F6F8F5"/>
+<text x="40" y="42" font-family="Arial" font-size="17" font-weight="700" letter-spacing="2" fill="#2E7D74">A SOURCE-FIRST EXPERIENCE</text>
+<g font-family="Arial">
+<rect x="35" y="72" width="250" height="180" rx="18" fill="#FFFFFF" stroke="#D9E3DF" stroke-width="2"/><circle cx="67" cy="105" r="18" fill="#E3F0EC"/><text x="67" y="111" text-anchor="middle" font-size="17" font-weight="700" fill="#2E7D74">1</text>
+<text x="57" y="151" font-size="21" font-weight="700" fill="#18383E">Paste excerpt</text><text x="57" y="181" font-size="16" fill="#4B6268">Synthetic/de-identified</text><text x="57" y="205" font-size="16" fill="#4B6268">English text only.</text>
+<path d="M291 162H316" stroke="#2E7D74" stroke-width="3" marker-end="url(#a)"/>
+<rect x="330" y="72" width="250" height="180" rx="18" fill="#FFFFFF" stroke="#D9E3DF" stroke-width="2"/><circle cx="362" cy="105" r="18" fill="#E3F0EC"/><text x="362" y="111" text-anchor="middle" font-size="17" font-weight="700" fill="#2E7D74">2</text>
+<text x="352" y="151" font-size="21" font-weight="700" fill="#18383E">Check evidence</text><text x="352" y="181" font-size="16" fill="#4B6268">Cited wording must match</text><text x="352" y="205" font-size="16" fill="#4B6268">the submitted source.</text>
+<path d="M586 162H611" stroke="#2E7D74" stroke-width="3" marker-end="url(#a)"/>
+<rect x="625" y="72" width="250" height="180" rx="18" fill="#FFFFFF" stroke="#D9E3DF" stroke-width="2"/><circle cx="657" cy="105" r="18" fill="#E3F0EC"/><text x="657" y="111" text-anchor="middle" font-size="17" font-weight="700" fill="#2E7D74">3</text>
+<text x="647" y="151" font-size="21" font-weight="700" fill="#18383E">Open the quote</text><text x="647" y="181" font-size="16" fill="#4B6268">Keyboard-accessible source</text><text x="647" y="205" font-size="16" fill="#4B6268">panel shows exact text.</text>
+<path d="M881 162H906" stroke="#2E7D74" stroke-width="3" marker-end="url(#a)"/>
+<rect x="920" y="72" width="245" height="180" rx="18" fill="#FFFFFF" stroke="#D9E3DF" stroke-width="2"/><circle cx="952" cy="105" r="18" fill="#E3F0EC"/><text x="952" y="111" text-anchor="middle" font-size="17" font-weight="700" fill="#2E7D74">4</text>
+<text x="942" y="151" font-size="21" font-weight="700" fill="#18383E">Prepare a question</text><text x="942" y="181" font-size="16" fill="#4B6268">Neutral prompt for a</text><text x="942" y="205" font-size="16" fill="#4B6268">care-team discussion.</text>
+</g>
+<text x="42" y="294" font-family="Arial" font-size="14" font-weight="700" letter-spacing="1.4" fill="#71848A">OUTCOMES THE INTERFACE MUST HANDLE</text>
+<rect x="35" y="314" width="350" height="76" rx="14" fill="#E3F0EC"/><text x="57" y="345" font-family="Arial" font-size="17" font-weight="700" fill="#18383E">SUPPORTED</text><text x="57" y="370" font-family="Arial" font-size="14" fill="#4B6268">Show the statement with its exact quote.</text>
+<rect x="425" y="314" width="350" height="76" rx="14" fill="#FFF5E3"/><text x="447" y="345" font-family="Arial" font-size="17" font-weight="700" fill="#18383E">MISSING / UNCLEAR</text><text x="447" y="370" font-family="Arial" font-size="14" fill="#4B6268">Say “not stated” or preserve ambiguity.</text>
+<rect x="815" y="314" width="350" height="76" rx="14" fill="#F8E9E5"/><text x="837" y="345" font-family="Arial" font-size="17" font-weight="700" fill="#18383E">OUT OF SCOPE / FAILURE</text><text x="837" y="370" font-family="Arial" font-size="14" fill="#4B6268">Refuse, abstain, or show a safe error.</text>
+</svg>

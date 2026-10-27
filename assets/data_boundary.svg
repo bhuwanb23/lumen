@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="430" viewBox="0 0 1200 430">
+<defs><marker id="b" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0L10 5L0 10z" fill="#2E7D74"/></marker></defs>
+<rect width="1200" height="430" rx="28" fill="#F6F8F5"/>
+<text x="40" y="42" font-family="Arial" font-size="17" font-weight="700" letter-spacing="2" fill="#2E7D74">HIGH-LEVEL DATA FLOW AND PRIVACY BOUNDARY</text>
+<g font-family="Arial">
+<rect x="35" y="77" width="245" height="168" rx="18" fill="#FFFFFF" stroke="#D9E3DF" stroke-width="2"/><text x="57" y="117" font-size="15" font-weight="700" fill="#2E7D74">1 / INPUT</text><text x="57" y="154" font-size="21" font-weight="700" fill="#18383E">Browser</text><text x="57" y="184" font-size="15" fill="#4B6268">Synthetic/de-identified</text><text x="57" y="208" font-size="15" fill="#4B6268">excerpt; clear notices.</text>
+<path d="M286 162H311" stroke="#2E7D74" stroke-width="3" marker-end="url(#b)"/>
+<rect x="325" y="77" width="245" height="168" rx="18" fill="#FFFFFF" stroke="#D9E3DF" stroke-width="2"/><text x="347" y="117" font-size="15" font-weight="700" fill="#2E7D74">2 / TRANSIT</text><text x="347" y="154" font-size="21" font-weight="700" fill="#18383E">Same-origin route</text><text x="347" y="184" font-size="15" fill="#4B6268">Bounded request; no-store;</text><text x="347" y="208" font-size="15" fill="#4B6268">server-side forwarding.</text>
+<path d="M576 162H601" stroke="#2E7D74" stroke-width="3" marker-end="url(#b)"/>
+<rect x="615" y="77" width="245" height="168" rx="18" fill="#FFFFFF" stroke="#D9E3DF" stroke-width="2"/><text x="637" y="117" font-size="15" font-weight="700" fill="#2E7D74">3 / SAFETY</text><text x="637" y="154" font-size="21" font-weight="700" fill="#18383E">Evidence checks</text><text x="637" y="184" font-size="15" fill="#4B6268">Exact span, verifier and</text><text x="637" y="208" font-size="15" fill="#4B6268">scope controls.</text>
+<path d="M866 162H891" stroke="#2E7D74" stroke-width="3" marker-end="url(#b)"/>
+<rect x="905" y="77" width="260" height="168" rx="18" fill="#FFFFFF" stroke="#D9E3DF" stroke-width="2"/><text x="927" y="117" font-size="15" font-weight="700" fill="#2E7D74">4 / RESULT</text><text x="927" y="154" font-size="21" font-weight="700" fill="#18383E">Show or abstain</text><text x="927" y="184" font-size="15" fill="#4B6268">Quote, no-claim, refusal</text><text x="927" y="208" font-size="15" fill="#4B6268">or generic safe error.</text>
+<rect x="35" y="275" width="1130" height="117" rx="18" fill="#FFF5E3" stroke="#EBD7AD" stroke-width="2"/><circle cx="76" cy="333" r="22" fill="#DDAA58"/><path d="M76 320v16M76 344v2" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round"/>
+<text x="115" y="314" font-size="20" font-weight="700" fill="#18383E">Current demo: provider disabled</text>
+<text x="115" y="344" font-size="15" fill="#4B6268">The live browser-to-service path returns a generic unavailable response and no claims.</text>
+<text x="115" y="369" font-size="15" fill="#4B6268">If enabled later, text may leave the device; provider retention, region and terms need review.</text>
+</g></svg>
