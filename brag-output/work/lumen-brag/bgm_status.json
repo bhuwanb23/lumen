@@ -1,0 +1,18 @@
+{
+  "generated_at": "2026-10-27T14:58:34.851Z",
+  "enabled": true,
+  "provider": "musicgen",
+  "mode": "detached-seed-loop",
+  "path": "assets/bgm/track.wav",
+  "log": "D:\\projects\\website\\lumen\\brag-output\\work\\lumen-brag\\assets\\bgm\\bgm-1793112790253.log",
+  "pid": 30828,
+  "target_duration_s": 31.062,
+  "seed_duration_s": 28,
+  "loop_count": 2,
+  "timeout_ms": 120000,
+  "status": "ready",
+  "ready": true,
+  "waited_ms": 0,
+  "size_bytes": 1988012,
+  "message": "BGM ready at assets/bgm/track.wav."
+}

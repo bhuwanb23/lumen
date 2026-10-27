@@ -1,0 +1,646 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>Lumen — Brag</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      :root {
+        --ink: #193331;
+        --muted: #526562;
+        --paper: #f5f4ef;
+        --surface: #ffffff;
+        --accent: #176b5b;
+        --border: #d8dfdc;
+        --emerald-900: #064e3b;
+        --emerald-800: #065f46;
+        --emerald-700: #047857;
+        --emerald-50: #ecfdf5;
+        --amber-50: #fffbeb;
+        --amber-300: #fcd34d;
+        --amber-950: #451a03;
+        --slate-50: #f8fafc;
+        --slate-200: #e2e8f0;
+        --slate-400: #94a3b8;
+        --slate-600: #475569;
+        --slate-700: #334155;
+        --slate-800: #1e293b;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body {
+        margin: 0;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: var(--paper);
+        color: var(--ink);
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      #root {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background: var(--paper);
+      }
+      .clip {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+      }
+      .scene-inner {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        padding: 72px 120px;
+      }
+      .paper-glow {
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(ellipse 80% 55% at 18% 12%, rgba(23, 107, 91, 0.08), transparent 55%),
+          radial-gradient(ellipse 70% 50% at 88% 78%, rgba(180, 91, 19, 0.06), transparent 50%),
+          var(--paper);
+      }
+      .brand-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        max-width: 1280px;
+        margin: 0 auto;
+      }
+      .brand {
+        font-size: 28px;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        color: var(--ink);
+      }
+      .pill {
+        border: 1px solid rgba(6, 78, 59, 0.2);
+        border-radius: 999px;
+        padding: 8px 16px;
+        font-size: 15px;
+        color: var(--slate-700);
+        background: rgba(255, 255, 255, 0.7);
+      }
+      .eyebrow {
+        font-size: 18px;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--emerald-800);
+        margin-bottom: 20px;
+      }
+      .hero-title {
+        font-size: 64px;
+        font-weight: 600;
+        line-height: 1.12;
+        letter-spacing: -0.02em;
+        max-width: 1100px;
+        color: var(--ink);
+      }
+      .hero-sub {
+        margin-top: 28px;
+        font-size: 24px;
+        line-height: 1.5;
+        color: var(--slate-700);
+        max-width: 920px;
+      }
+      .ui-shell {
+        width: 100%;
+        max-width: 1280px;
+        margin: 0 auto;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .card {
+        background: var(--surface);
+        border: 1px solid var(--slate-200);
+        border-radius: 28px;
+        padding: 40px 48px;
+        box-shadow: 0 1px 2px rgba(25, 51, 49, 0.04), 0 18px 48px rgba(25, 51, 49, 0.06);
+      }
+      .card h2 {
+        font-size: 34px;
+        font-weight: 600;
+        margin-bottom: 10px;
+      }
+      .card-lead {
+        font-size: 18px;
+        color: var(--slate-700);
+        margin-bottom: 22px;
+      }
+      .safety-box {
+        border: 1px solid var(--amber-300);
+        background: var(--amber-50);
+        color: var(--amber-950);
+        border-radius: 14px;
+        padding: 16px 18px;
+        font-size: 15px;
+        line-height: 1.45;
+        margin-bottom: 22px;
+      }
+      .label {
+        font-size: 16px;
+        font-weight: 700;
+        margin-bottom: 8px;
+      }
+      .mono-box {
+        font-family: ui-monospace, Consolas, monospace;
+        font-size: 17px;
+        line-height: 1.55;
+        border: 1px solid var(--slate-400);
+        border-radius: 14px;
+        padding: 16px 18px;
+        min-height: 148px;
+        white-space: pre-wrap;
+        color: var(--ink);
+        background: #fff;
+      }
+      .caret {
+        display: inline-block;
+        width: 2px;
+        height: 1.1em;
+        background: var(--emerald-800);
+        vertical-align: text-bottom;
+        margin-left: 1px;
+      }
+      .acks {
+        margin-top: 18px;
+        background: var(--slate-50);
+        border-radius: 14px;
+        padding: 14px 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      .ack {
+        display: flex;
+        gap: 12px;
+        align-items: flex-start;
+        font-size: 15px;
+        line-height: 1.4;
+        color: var(--slate-800);
+      }
+      .check {
+        width: 22px;
+        height: 22px;
+        border: 2px solid var(--slate-400);
+        border-radius: 5px;
+        flex-shrink: 0;
+        margin-top: 1px;
+        background: #fff;
+        position: relative;
+        overflow: hidden;
+      }
+      .check-fill {
+        position: absolute;
+        inset: 0;
+        background: var(--emerald-800);
+        opacity: 0;
+      }
+      .check-mark {
+        position: absolute;
+        left: 6px;
+        top: 2px;
+        width: 6px;
+        height: 11px;
+        border: solid #fff;
+        border-width: 0 2px 2px 0;
+        transform: rotate(45deg);
+        opacity: 0;
+      }
+      .cta {
+        margin-top: 20px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 52px;
+        padding: 12px 28px;
+        border-radius: 14px;
+        background: var(--emerald-900);
+        color: #fff;
+        font-size: 18px;
+        font-weight: 700;
+        border: none;
+        opacity: 0.45;
+      }
+      .cta.enabled { opacity: 1; }
+      .disclaimer {
+        background: var(--amber-50);
+        color: var(--amber-950);
+        border-radius: 12px;
+        padding: 14px 16px;
+        font-size: 15px;
+        line-height: 1.45;
+        margin: 16px 0 20px;
+      }
+      .claims h4 {
+        font-size: 20px;
+        font-weight: 700;
+        margin-bottom: 14px;
+      }
+      .claim {
+        border: 1px solid var(--slate-200);
+        border-radius: 14px;
+        padding: 18px 20px;
+        margin-bottom: 14px;
+        font-size: 18px;
+        line-height: 1.5;
+      }
+      .source-btn {
+        margin-top: 14px;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        min-height: 42px;
+        padding: 8px 14px;
+        border-radius: 10px;
+        border: 1px solid var(--emerald-800);
+        color: #022c22;
+        font-size: 14px;
+        font-weight: 700;
+        background: #fff;
+      }
+      .source-btn span { font-weight: 400; }
+      .quote {
+        margin-top: 12px;
+        border-left: 4px solid var(--emerald-700);
+        background: var(--emerald-50);
+        border-radius: 0 12px 12px 0;
+        padding: 14px 16px;
+        font-size: 15px;
+        color: var(--slate-800);
+      }
+      .quote strong {
+        display: block;
+        margin-bottom: 6px;
+        font-size: 14px;
+      }
+      .quote q { font-style: normal; }
+      .questions {
+        margin-top: 18px;
+        background: var(--slate-50);
+        border-radius: 14px;
+        padding: 18px 20px;
+      }
+      .questions h4 {
+        font-size: 18px;
+        margin-bottom: 10px;
+      }
+      .questions ul {
+        padding-left: 22px;
+        font-size: 17px;
+        line-height: 1.55;
+        color: var(--slate-800);
+      }
+      .refusal {
+        border: 1px solid var(--amber-300);
+        background: var(--amber-50);
+        color: var(--amber-950);
+        border-radius: 14px;
+        padding: 22px 24px;
+        font-size: 22px;
+        line-height: 1.45;
+        max-width: 1000px;
+      }
+      .scope-tag {
+        display: inline-block;
+        margin-bottom: 18px;
+        font-size: 15px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--emerald-800);
+      }
+      .fixture-label {
+        position: absolute;
+        right: 120px;
+        bottom: 56px;
+        font-size: 13px;
+        letter-spacing: 0.04em;
+        color: var(--slate-600);
+        background: rgba(245, 244, 239, 0.92);
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        padding: 8px 14px;
+      }
+      .outro-wrap {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 80px;
+      }
+      .outro-line {
+        font-size: 52px;
+        font-weight: 600;
+        letter-spacing: -0.02em;
+        max-width: 1100px;
+        line-height: 1.2;
+      }
+      .outro-sub {
+        margin-top: 28px;
+        font-size: 22px;
+        color: var(--slate-700);
+        max-width: 820px;
+        line-height: 1.5;
+      }
+      .outro-brand {
+        margin-top: 48px;
+        font-size: 32px;
+        font-weight: 700;
+      }
+      .outro-meta {
+        margin-top: 16px;
+        font-size: 15px;
+        color: var(--slate-600);
+      }
+      .busy-banner {
+        margin-top: 18px;
+        background: var(--slate-50);
+        border-radius: 12px;
+        padding: 14px 16px;
+        font-size: 16px;
+        color: var(--slate-800);
+      }
+      .scene-title-bar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 18px;
+      }
+      .dim { opacity: 0.55; }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="60"
+      data-width="1920"
+      data-height="1080"
+      data-fps="30"
+    >
+      <!-- SCENE 1: Hook 0–6 -->
+      <section id="scene-hook" class="clip" data-start="0" data-duration="6.4" data-track-index="0">
+        <div class="paper-glow"></div>
+        <div class="scene-inner">
+          <div class="brand-row" id="hook-brand">
+            <div class="brand">◉ Lumen</div>
+            <div class="pill">Prototype · English · text only</div>
+          </div>
+          <div style="flex:1;display:flex;flex-direction:column;justify-content:center;max-width:1280px;margin:0 auto;width:100%;">
+            <p class="eyebrow" id="hook-eyebrow">Before your appointment</p>
+            <h1 class="hero-title" id="hook-title">A clearer conversation starts with understanding the report.</h1>
+            <p class="hero-sub" id="hook-sub">Lumen is a source-grounded prototype for explaining cancer pathology-report wording and preparing neutral questions for a care team.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SCENE 2: Paste 6–18 -->
+      <section id="scene-paste" class="clip" data-start="5.9" data-duration="12.4" data-track-index="0">
+        <div class="paper-glow"></div>
+        <div class="scene-inner">
+          <div class="brand-row" style="margin-bottom:28px;">
+            <div class="brand">◉ Lumen</div>
+            <div class="pill">Prototype · English · text only</div>
+          </div>
+          <div class="ui-shell">
+            <div class="card" id="paste-card">
+              <h2>Explain a report excerpt</h2>
+              <p class="card-lead">Text only, English only. Lumen returns source-linked statements that pass two verification steps; it may return no claims.</p>
+              <div class="safety-box"><strong>Prototype safety:</strong> Use synthetic or de-identified text only. This is not medical advice; confirm report meaning with your care team.</div>
+              <div class="label">Report excerpt</div>
+              <div class="mono-box" id="report-box"><span id="report-text"></span><span class="caret" id="report-caret"></span></div>
+              <div class="acks">
+                <div class="ack"><div class="check" id="check-1"><div class="check-fill" id="check-1-fill"></div><div class="check-mark" id="check-1-mark"></div></div><span>I confirm this excerpt is synthetic or properly de-identified and contains no direct identifiers.</span></div>
+                <div class="ack"><div class="check" id="check-2"><div class="check-fill" id="check-2-fill"></div><div class="check-mark" id="check-2-mark"></div></div><span>I understand the service operator's configured model provider will process the excerpt, potentially outside my device.</span></div>
+              </div>
+              <div class="cta" id="cta-btn">Explain excerpt</div>
+            </div>
+          </div>
+        </div>
+        <div class="fixture-label">Synthetic demo excerpt</div>
+      </section>
+
+      <!-- SCENE 3: Verify 18–28 -->
+      <section id="scene-verify" class="clip" data-start="17.9" data-duration="10.4" data-track-index="0">
+        <div class="paper-glow"></div>
+        <div class="scene-inner">
+          <div class="brand-row" style="margin-bottom:28px;">
+            <div class="brand">◉ Lumen</div>
+            <div class="pill">Prototype · English · text only</div>
+          </div>
+          <div class="ui-shell">
+            <div class="card" id="verify-card">
+              <div class="scene-title-bar">
+                <h2>Result</h2>
+                <div class="pill" style="position:relative;min-width:160px;text-align:center;">
+                  <span id="verify-status-busy">Verifying report…</span>
+                  <span id="verify-status-done" style="position:absolute;left:0;right:0;opacity:0;">Verified</span>
+                </div>
+              </div>
+              <div class="busy-banner" id="busy-banner">The excerpt is being checked. This may take a little time. Please keep this page open.</div>
+              <div id="verify-result" style="opacity:0;">
+                <p class="disclaimer">Lumen explains report wording; it is not medical advice. It does not diagnose, predict outcomes, or recommend treatment. Confirm meaning with your care team.</p>
+                <div class="claims">
+                  <h4>What the report says</h4>
+                  <div class="claim" id="claim-1">The report names adenocarcinoma with an acinar pattern and lists a PD-L1 tumor proportion score of 15%.</div>
+                  <div class="claim" id="claim-2">The report says EGFR mutation testing was not performed on this specimen.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="fixture-label">Synthetic prototype demo — not clinical output</div>
+      </section>
+
+      <!-- SCENE 4: Source 28–40 -->
+      <section id="scene-source" class="clip" data-start="27.9" data-duration="12.4" data-track-index="0">
+        <div class="paper-glow"></div>
+        <div class="scene-inner">
+          <div class="brand-row" style="margin-bottom:28px;">
+            <div class="brand">◉ Lumen</div>
+            <div class="pill">Prototype · English · text only</div>
+          </div>
+          <div class="ui-shell">
+            <div class="card" id="source-card">
+              <h2>What the report says</h2>
+              <p class="disclaimer">Lumen explains report wording; it is not medical advice. Confirm meaning with your care team.</p>
+              <div class="claim" id="source-claim">
+                The report names adenocarcinoma with an acinar pattern and lists a PD-L1 tumor proportion score of 15%.
+                <div class="source-btn" id="view-source-btn" style="position:relative;min-width:168px;">
+                  <span id="source-btn-view">View source <span style="font-weight:400">(1 of 2)</span></span>
+                  <span id="source-btn-hide" style="position:absolute;left:14px;top:50%;transform:translateY(-50%);opacity:0;">Hide source <span style="font-weight:400">(1 of 2)</span></span>
+                </div>
+                <div class="quote" id="source-quote" style="opacity:0;visibility:hidden;">
+                  <strong>Exact wording from the submitted excerpt · fact_histology</strong>
+                  <q>Adenocarcinoma, acinar pattern</q>
+                </div>
+              </div>
+              <div class="claim" id="source-claim-2" style="opacity:0.35;">
+                The report says EGFR mutation testing was not performed on this specimen.
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="fixture-label">Synthetic prototype demo — not clinical output</div>
+      </section>
+
+      <!-- SCENE 5: Questions 40–48 -->
+      <section id="scene-questions" class="clip" data-start="39.9" data-duration="8.4" data-track-index="0">
+        <div class="paper-glow"></div>
+        <div class="scene-inner">
+          <div class="brand-row" style="margin-bottom:28px;">
+            <div class="brand">◉ Lumen</div>
+            <div class="pill">Prototype · English · text only</div>
+          </div>
+          <div class="ui-shell">
+            <div class="card" id="questions-card">
+              <h2>Prepare the conversation</h2>
+              <p class="card-lead">Neutral questions from verified report wording — not recommendations.</p>
+              <div class="questions" id="questions-panel">
+                <h4>Questions you could ask your care team</h4>
+                <ul>
+                  <li id="q1">Could you explain what the report's biomarker results line means?</li>
+                </ul>
+              </div>
+              <div class="claim" style="margin-top:16px;" id="fact-stage">
+                <strong>Stage:</strong> Not stated in this excerpt
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SCENE 6: Safety 48–54 -->
+      <section id="scene-safety" class="clip" data-start="47.9" data-duration="6.4" data-track-index="0">
+        <div class="paper-glow"></div>
+        <div class="scene-inner" style="justify-content:center;">
+          <div class="ui-shell" style="flex:0;">
+            <div id="safety-block">
+              <div class="scope-tag">Scope safety is a feature</div>
+              <div class="refusal" id="refusal-panel">I can't estimate prognosis, survival, or recurrence from a report. Please ask your care team, who can interpret your full clinical context.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SCENE 7: Outro 54–60 -->
+      <section id="scene-outro" class="clip" data-start="53.9" data-duration="6.1" data-track-index="0">
+        <div class="paper-glow"></div>
+        <div class="outro-wrap">
+          <div class="outro-line" id="outro-line">Evidence before eloquence.</div>
+          <p class="outro-sub" id="outro-sub">An untraceable answer is a failure. Confirm everything with your care team.</p>
+          <div class="outro-brand" id="outro-brand">◉ Lumen</div>
+          <p class="outro-meta" id="outro-meta">English only · Synthetic or de-identified excerpts only · No report-body logging or application storage</p>
+        </div>
+      </section>
+
+      <!-- Audio -->
+      <audio id="vo-hook" src="assets/voice/hook.wav" data-start="0.45" data-duration="5.12" data-volume="1"></audio>
+      <audio id="vo-paste" src="assets/voice/paste.wav" data-start="6.4" data-duration="5.483" data-volume="1"></audio>
+      <audio id="vo-verify" src="assets/voice/verify.wav" data-start="18.3" data-duration="4.373" data-volume="1"></audio>
+      <audio id="vo-source" src="assets/voice/source.wav" data-start="28.5" data-duration="3.435" data-volume="1"></audio>
+      <audio id="vo-questions" src="assets/voice/questions.wav" data-start="40.5" data-duration="3.264" data-volume="1"></audio>
+      <audio id="vo-safety" src="assets/voice/safety.wav" data-start="48.4" data-duration="4.459" data-volume="1"></audio>
+      <audio id="vo-outro" src="assets/voice/outro.wav" data-start="54.3" data-duration="4.928" data-volume="1"></audio>
+      <audio id="sfx-click-1" src=".media/audio/sfx/sfx_001.mp3" data-start="13.2" data-duration="0.4" data-volume="0.28"></audio>
+      <audio id="sfx-click-2" src=".media/audio/sfx/sfx_001.mp3" data-start="14.0" data-duration="0.4" data-volume="0.28"></audio>
+      <audio id="sfx-click-3" src=".media/audio/sfx/sfx_001.mp3" data-start="31.6" data-duration="0.4" data-volume="0.28"></audio>
+      <audio id="sfx-whoosh" src=".media/audio/sfx/sfx_002.mp3" data-start="5.7" data-duration="1.4" data-volume="0.1"></audio>
+      <audio id="bgm" src="assets/bgm/track.wav" data-start="0" data-duration="60" data-volume="0.14"></audio>
+    </div>
+    <script>
+      const REPORT =
+        "Lung, right upper lobe, biopsy: Adenocarcinoma, acinar pattern.\n" +
+        "PD-L1 tumor proportion score: 15%.\n" +
+        "EGFR mutation testing: Not performed on this specimen.";
+
+      const reportEl = document.getElementById("report-text");
+
+      function typeReport(progress) {
+        const n = Math.floor(REPORT.length * Math.max(0, Math.min(1, progress)));
+        reportEl.textContent = REPORT.slice(0, n);
+      }
+
+      const tl = gsap.timeline({ paused: true });
+
+      // --- Hook ---
+      tl.fromTo("#hook-brand", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" }, 0.15);
+      tl.fromTo("#hook-eyebrow", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.65, ease: "power3.out" }, 0.45);
+      tl.fromTo("#hook-title", { opacity: 0, y: 28 }, { opacity: 1, y: 0, duration: 0.9, ease: "power3.out" }, 0.75);
+      tl.fromTo("#hook-sub", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" }, 1.5);
+      tl.to("#hook-brand, #hook-eyebrow, #hook-title, #hook-sub", { opacity: 0, y: -12, duration: 0.45, ease: "power2.in", stagger: 0.04 }, 5.55);
+
+      // --- Paste ---
+      tl.fromTo("#paste-card", { opacity: 0, y: 36 }, { opacity: 1, y: 0, duration: 0.75, ease: "power3.out" }, 6.05);
+      tl.fromTo("#report-caret", { opacity: 0 }, { opacity: 1, duration: 0.2 }, 6.5);
+      // typing via onUpdate proxy
+      const typeProxy = { p: 0 };
+      tl.to(typeProxy, {
+        p: 1,
+        duration: 5.2,
+        ease: "none",
+        onUpdate: () => typeReport(typeProxy.p),
+      }, 6.7);
+      tl.fromTo("#check-1-fill, #check-1-mark", { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power2.out" }, 13.2);
+      tl.fromTo("#check-1", { scale: 0.85 }, { scale: 1, duration: 0.25, ease: "back.out(2)" }, 13.2);
+      tl.fromTo("#check-2-fill, #check-2-mark", { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power2.out" }, 14.0);
+      tl.fromTo("#check-2", { scale: 0.85 }, { scale: 1, duration: 0.25, ease: "back.out(2)" }, 14.0);
+      tl.fromTo("#cta-btn", { opacity: 0.45 }, { opacity: 1, duration: 0.25, ease: "power2.out" }, 14.35);
+      tl.fromTo("#cta-btn", { scale: 1 }, { scale: 1.03, duration: 0.2, yoyo: true, repeat: 1, ease: "power2.out" }, 14.5);
+      tl.to("#paste-card", { opacity: 0, y: -20, duration: 0.45, ease: "power2.in" }, 17.4);
+
+      // --- Verify ---
+      tl.fromTo("#verify-card", { opacity: 0, y: 28 }, { opacity: 1, y: 0, duration: 0.65, ease: "power3.out" }, 18.05);
+      tl.to("#busy-banner", { opacity: 0, y: -8, duration: 0.35, ease: "power2.in" }, 20.6);
+      tl.set("#busy-banner", { visibility: "hidden" }, 20.95);
+      tl.to("#verify-status-busy", { opacity: 0, duration: 0.2 }, 20.7);
+      tl.to("#verify-status-done", { opacity: 1, duration: 0.25 }, 20.75);
+      tl.fromTo("#verify-result", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" }, 20.85);
+      tl.fromTo("#claim-1", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.55, ease: "power3.out" }, 21.2);
+      tl.fromTo("#claim-2", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.55, ease: "power3.out" }, 21.7);
+      tl.to("#verify-card", { opacity: 0, y: -16, duration: 0.4, ease: "power2.in" }, 27.4);
+
+      // --- Source ---
+      tl.fromTo("#source-card", { opacity: 0, y: 28 }, { opacity: 1, y: 0, duration: 0.65, ease: "power3.out" }, 28.05);
+      tl.fromTo("#view-source-btn", { scale: 1 }, { scale: 0.96, duration: 0.12, yoyo: true, repeat: 1 }, 31.55);
+      tl.set("#source-quote", { visibility: "visible" }, 31.75);
+      tl.fromTo("#source-quote", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.55, ease: "power3.out" }, 31.75);
+      tl.to("#source-btn-view", { opacity: 0, duration: 0.15 }, 31.75);
+      tl.to("#source-btn-hide", { opacity: 1, duration: 0.2 }, 31.8);
+      tl.to("#source-card", { opacity: 0, y: -16, duration: 0.4, ease: "power2.in" }, 39.4);
+
+      // --- Questions ---
+      tl.fromTo("#questions-card", { opacity: 0, y: 28 }, { opacity: 1, y: 0, duration: 0.65, ease: "power3.out" }, 40.05);
+      tl.fromTo("#questions-panel", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.55, ease: "power3.out" }, 40.5);
+      tl.fromTo("#fact-stage", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 41.2);
+      tl.to("#questions-card", { opacity: 0, y: -16, duration: 0.4, ease: "power2.in" }, 47.4);
+
+      // --- Safety ---
+      tl.fromTo("#safety-block", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" }, 48.05);
+      tl.to("#safety-block", { opacity: 0, y: -12, duration: 0.4, ease: "power2.in" }, 53.4);
+
+      // --- Outro ---
+      tl.fromTo("#outro-line", { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" }, 54.1);
+      tl.fromTo("#outro-sub", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.65, ease: "power3.out" }, 54.7);
+      tl.fromTo("#outro-brand", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.55, ease: "power3.out" }, 55.4);
+      tl.fromTo("#outro-meta", { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power2.out" }, 55.9);
+
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+      typeReport(0);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,20 @@
+{
+  "provider": "kokoro",
+  "voice": "am_michael",
+  "lang": "en-us",
+  "speed": 0.92,
+  "style": "calm, clear, polished medical documentary narrator",
+  "lines": [
+    { "id": "hook", "text": "Before your appointment, a clearer conversation starts with understanding the report." },
+    { "id": "paste", "text": "Paste an excerpt. Confirm it is synthetic. Ask for wording—not a diagnosis." },
+    { "id": "verify", "text": "Lumen returns only statements that pass two verification steps." },
+    { "id": "source", "text": "Every claim links to the exact words in your report." },
+    { "id": "questions", "text": "Then it prepares neutral questions for your care team." },
+    { "id": "safety", "text": "Scope safety is a feature—no prognosis, no treatment advice." },
+    { "id": "outro", "text": "Evidence before eloquence. Confirm everything with your clinician. Lumen." }
+  ],
+  "bgm": {
+    "mode": "generate",
+    "prompt": "calm elegant ambient underscore, warm soft piano and gentle pads, clinical restrained premium, no drums, 60 seconds"
+  }
+}
