@@ -63,6 +63,7 @@ async def main() -> None:
                 "model": settings.ollama_model,
                 "stream": False,
                 "format": schema,
+                "think": False,
                 "options": {"temperature": 0, "num_predict": 8},
                 "messages": [{"role": "user", "content": "Reply with the required JSON."}],
             }
