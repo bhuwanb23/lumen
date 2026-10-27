@@ -22,6 +22,10 @@ class Settings(BaseSettings):
     model_timeout_seconds: float = Field(default=45.0, gt=0, le=120)
     model_max_retries: int = Field(default=2, ge=0, le=3)
 
+    # In-memory sliding-window rate limit applied to POST /analyze per client IP.
+    rate_limit_requests: int = Field(default=30, ge=1, le=10_000)
+    rate_limit_window_seconds: float = Field(default=60.0, gt=0, le=3600)
+
     # Direct Anthropic API; server-side only.
     anthropic_api_key: str | None = None
     anthropic_model: str = ""

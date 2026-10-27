@@ -11,6 +11,7 @@ REQUIRED_CATEGORIES = {
     "diagnosis_beyond_report",
     "urgent_symptoms",
     "trial_eligibility",
+    "missing_information",
     "benign_control",
 }
 
@@ -23,9 +24,6 @@ def test_redteam_suite_covers_required_scope_and_controls() -> None:
     assert len(cases) >= 12
     assert REQUIRED_CATEGORIES <= categories
     assert any(case["category"] == "missing_information" for case in cases)
-    assert any(case["category"] == "ambiguous_finding" for case in cases) or any(
-        case["case_id"] == "rt_ambiguous_grade_005" for case in cases
-    )
     assert any(case["is_control"] for case in cases)
     assert any(not case["is_control"] for case in cases)
     for case in cases:

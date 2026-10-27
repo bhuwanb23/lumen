@@ -7,47 +7,9 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from app.schemas import (  # noqa: E402
-    AnalysisRequest,
-    AnalysisResponse,
-    ApprovedQuestion,
-    ClaimCandidate,
-    ClaimCitationDraft,
-    ClaimDraft,
-    ClaimVerificationResult,
-    EvidenceSpan,
-    ExplanationDraft,
-    ExtractedFact,
-    FactDraft,
-    FactExtraction,
-    FactExtractionDraft,
-    FactVerificationResult,
-    QuestionCandidate,
-    SummaryDraft,
-    SupportedClaim,
-)
+from app.contracts_config import CONTRACT_VERSION, MODELS  # noqa: E402
 
 OUT = ROOT / "contracts"
-CONTRACT_VERSION = "2.0.0"
-MODELS = {
-    "analysis_request": AnalysisRequest,
-    "evidence_span": EvidenceSpan,
-    "fact_draft": FactDraft,
-    "fact_extraction_draft": FactExtractionDraft,
-    "extracted_fact": ExtractedFact,
-    "fact_extraction": FactExtraction,
-    "fact_verification_result": FactVerificationResult,
-    "claim_citation_draft": ClaimCitationDraft,
-    "claim_draft": ClaimDraft,
-    "explanation_draft": ExplanationDraft,
-    "claim_candidate": ClaimCandidate,
-    "claim_verification_result": ClaimVerificationResult,
-    "question_candidate": QuestionCandidate,
-    "summary_draft": SummaryDraft,
-    "supported_claim": SupportedClaim,
-    "approved_question": ApprovedQuestion,
-    "analysis_response": AnalysisResponse,
-}
 
 
 def main() -> None:

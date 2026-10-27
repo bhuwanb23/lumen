@@ -12,6 +12,7 @@ from starlette.types import ASGIApp, Message, Receive, Scope, Send
 from app.config import get_settings
 from app.pipeline import analyze_report
 from app.providers import ProviderError, create_provider
+from app.ratelimit import RateLimitMiddleware
 from app.safety import classify_user_question, make_refusal
 from app.schemas import AnalysisRequest, AnalysisResponse
 
@@ -98,6 +99,11 @@ app = FastAPI(
 )
 
 app.add_middleware(AnalysisBodyLimitMiddleware, max_bytes=1_000_000)
+app.add_middleware(
+    RateLimitMiddleware,
+    limit=settings.rate_limit_requests,
+    window_seconds=settings.rate_limit_window_seconds,
+)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=settings.cors_origin_list,
