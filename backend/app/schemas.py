@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from collections.abc import Sequence
-from typing import Literal, get_args
+from typing import Any, Literal, get_args
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
@@ -117,6 +117,16 @@ class FactExtractionDraft(StrictModel):
     """The extraction model must account for every allowlisted field exactly once."""
 
     facts: list[FactDraft] = Field(min_length=14, max_length=14)
+
+    @model_validator(mode="before")
+    @classmethod
+    def normalize_not_stated_facts(cls, data: Any) -> Any:
+        if isinstance(data, dict):
+            for fact in data.get("facts", []):
+                if isinstance(fact, dict) and fact.get("status") == "not_stated":
+                    fact["value"] = None
+                    fact["evidence_quote"] = None
+        return data
 
     @model_validator(mode="after")
     def all_fields_appear_once(self) -> FactExtractionDraft:

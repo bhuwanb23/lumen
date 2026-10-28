@@ -52,3 +52,4 @@ frontend/.playwright/
 .hyperframes/
 snapshots/
 .hypothesis/
+*.zip

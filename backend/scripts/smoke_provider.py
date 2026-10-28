@@ -110,15 +110,17 @@ async def run(args: argparse.Namespace) -> int:
             generator = create_provider(settings, client, role="generator")
             verifier = create_provider(settings, client, role="verifier")
 
-            draft = await timed(generator.complete(
-                system_prompt=EXTRACTION_SYSTEM,
-                user_payload={
-                    "allowed_fields": list(ALL_FACT_FIELDS),
-                    "report_text": report_text,
-                },
-                output_model=FactExtractionDraft,
-                tool_name="fact_extraction",
-            ))
+            draft = await timed(
+                generator.complete(
+                    system_prompt=EXTRACTION_SYSTEM,
+                    user_payload={
+                        "allowed_fields": list(ALL_FACT_FIELDS),
+                        "report_text": report_text,
+                    },
+                    output_model=FactExtractionDraft,
+                    tool_name="fact_extraction",
+                )
+            )
             counts: dict[str, int] = {}
             for item in draft.facts:
                 counts[item.status] = counts.get(item.status, 0) + 1
@@ -128,15 +130,17 @@ async def run(args: argparse.Namespace) -> int:
             facts, dropped = _materialize_facts(draft, report_text)
             if dropped:
                 print(f"  note: {dropped} draft fact(s) dropped by deterministic span checks")
-            verdict = await timed(verifier.complete(
-                system_prompt=FACT_VERIFY_SYSTEM,
-                user_payload={
-                    "report_text": report_text,
-                    "facts": [fact.model_dump(mode="json") for fact in facts],
-                },
-                output_model=FactVerificationResult,
-                tool_name="fact_verification",
-            ))
+            verdict = await timed(
+                verifier.complete(
+                    system_prompt=FACT_VERIFY_SYSTEM,
+                    user_payload={
+                        "report_text": report_text,
+                        "facts": [fact.model_dump(mode="json") for fact in facts],
+                    },
+                    output_model=FactVerificationResult,
+                    tool_name="fact_verification",
+                )
+            )
             supported = len(verdict.supported_fact_ids)
             _print_stage(
                 f"fact_verification: {supported}/{len(facts)} facts supported",

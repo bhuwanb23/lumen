@@ -88,9 +88,7 @@ def _strip_length_limits(value: Any) -> Any:
         return [_strip_length_limits(item) for item in value]
     if isinstance(value, dict):
         return {
-            key: _strip_length_limits(item)
-            for key, item in value.items()
-            if key != "maxLength"
+            key: _strip_length_limits(item) for key, item in value.items() if key != "maxLength"
         }
     return value
 

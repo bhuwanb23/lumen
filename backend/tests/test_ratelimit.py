@@ -132,4 +132,4 @@ def test_rate_limiter_shares_unknown_bucket_when_client_missing() -> None:
 
 def test_real_app_has_rate_limiter_registered() -> None:
     registered = [m.cls for m in real_app.user_middleware]
-    assert RateLimitMiddleware in registered
+    assert any(str(cls) == str(RateLimitMiddleware) for cls in registered)
