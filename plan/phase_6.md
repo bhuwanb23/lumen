@@ -32,7 +32,8 @@ Phase 5 Gate 2 is **not passed**: no live model results/human claim labels, manu
 1. Gate 2 remains blocked; obtain model and human-review evidence plus manual accessibility review before calling this a release candidate.
 2. Confirm the actual event URL, submission rules, official cutoff/time zone, and whether a clearly disclosed synthetic-only software demo is eligible despite Gate 2 being blocked.
 3. Team must choose a project license and perform the Git tag/commit/history scan. Per standing instruction, no Git initialization, branch/commit/tag, Git checks, or repository administration were performed here.
-4. Docker Compose is not available in this workspace; no clean clone, public URL, Devpost upload, video upload, or receipt has been tested or produced.
+4. Docker Compose configuration validates locally (docker compose config); image build/runtime was not executed because the local Docker daemon was unavailable. No clean clone, public URL, Devpost upload, video upload, or receipt has been tested or produced.
 5. Before public exposure, review provider terms/retention/region, deployment logs, CORS, secret handling, and abuse/rate limits. There is no app-level public rate limiter.
 
 **Exit:** not met. No submission or Gate 3 claim is made until the dependency, event, license, deployment, and submission blockers are resolved.
+

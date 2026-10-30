@@ -1,0 +1,73 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: astral-sh/setup-uv@v5
+      - name: Sync backend
+        working-directory: backend
+        run: uv sync --locked --dev
+      - name: Ruff format
+        working-directory: backend
+        run: uv run ruff format --check .
+      - name: Ruff lint
+        working-directory: backend
+        run: uv run ruff check .
+      - name: mypy
+        working-directory: backend
+        run: uv run mypy app tests
+      - name: pytest
+        working-directory: backend
+        run: uv run pytest -q
+      - name: Export contracts
+        working-directory: backend
+        run: uv run python scripts/export_contracts.py
+      - name: Fixture integrity
+        run: uv run --project backend python eval/scripts/fixture_integrity.py
+      - name: Evaluation dry run
+        run: uv run --project backend python eval/run_eval.py --dry-run
+      - name: Red-team dry run
+        run: uv run --project backend python eval/run_redteam.py --dry-run
+
+  frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - uses: astral-sh/setup-uv@v5
+      - name: Install dependencies
+        working-directory: frontend
+        run: npm ci
+      - name: Lint
+        working-directory: frontend
+        run: npm run lint
+      - name: Typecheck
+        working-directory: frontend
+        run: npm run typecheck
+      - name: Build
+        working-directory: frontend
+        run: npm run build
+      - name: Install Playwright
+        working-directory: frontend
+        run: npx playwright install --with-deps chromium
+      - name: E2E
+        working-directory: frontend
+        run: npm run test:e2e
+
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate Compose configuration
+        run: docker compose config

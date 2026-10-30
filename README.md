@@ -102,3 +102,4 @@ curl -i http://localhost:3000/api/health
 ```
 
 Compose defaults to `MODEL_PROVIDER=disabled`. It configures an Ollama host-gateway address for optional use, but that endpoint is not guaranteed to be local or trusted. Docker Compose has not been executed in this assistant workspace; run the above smoke test on the target machine.
+

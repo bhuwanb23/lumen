@@ -73,3 +73,4 @@ Dependency note: `pip-audit` found `pytest 8.4.2` affected by `PYSEC-2026-1845` 
 - [x] Optional Phase 4 features remain deferred.
 
 **Decision:** Gate 2 is **blocked / not passed**. The current evidence supports a synthetic software demo only, not a model-quality claim, clinical release, or public deployment. To reconsider Gate 2, configure an explicitly approved provider and distinct reviewed model IDs, run the frozen synthetic suite without using model output to alter keys, obtain human claim-level labels (preferably independent review/adjudication), complete manual screen-reader/zoom checks, and validate the intended deployment including abuse controls and Docker if used.
+

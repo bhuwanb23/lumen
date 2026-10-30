@@ -1,0 +1,14 @@
+{
+  "run_id": "",
+  "dataset_version": "1.0.0",
+  "answer_key_version": "1.0.0",
+  "code_commit": "",
+  "prompt_version": "lumen_prompts_v1",
+  "provider": "",
+  "generator_model": "",
+  "verifier_model": "",
+  "evaluation_mode": "",
+  "annotation_date": "",
+  "reviewers": [],
+  "claim_support_rate": "not_measured_until_review"
+}
